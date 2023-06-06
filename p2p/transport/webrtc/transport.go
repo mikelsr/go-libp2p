@@ -231,12 +231,8 @@ func (t *WebRTCTransport) Dial(ctx context.Context, remoteMultiaddr ma.Multiaddr
 	return conn, nil
 }
 
-func (t *WebRTCTransport) dial(
-	ctx context.Context,
-	scope network.ConnManagementScope,
-	remoteMultiaddr ma.Multiaddr,
-	p peer.ID,
-) (tConn tpt.CapableConn, err error) {
+func (t *WebRTCTransport) dial(ctx context.Context, scope network.ConnManagementScope, remoteMultiaddr ma.Multiaddr, p peer.ID) (tConn tpt.CapableConn, err error) {
+	fmt.Println(remoteMultiaddr)
 	var pc *webrtc.PeerConnection
 	defer func() {
 		if err != nil {
@@ -369,11 +365,6 @@ func (t *WebRTCTransport) dial(
 	localAddr, err := manet.FromNetAddr(channel.LocalAddr())
 	if err != nil {
 		return nil, err
-	}
-
-	// check with the gater if we can dial
-	if t.gater != nil && !t.gater.InterceptAddrDial(p, remoteMultiaddr) {
-		return nil, errors.New("not allowed to dial remote peer")
 	}
 
 	// we can only know the remote public key after the noise handshake,
