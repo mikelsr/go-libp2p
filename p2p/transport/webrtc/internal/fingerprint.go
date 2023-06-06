@@ -45,7 +45,7 @@ func DecodeRemoteFingerprint(maddr ma.Multiaddr) (*mh.DecodedMultihash, error) {
 }
 
 func EncodeDTLSFingerprint(fp webrtc.DTLSFingerprint) (string, error) {
-	digest, err := encoding.DecodeInterpersedHexFromASCIIString(fp.Value)
+	digest, err := encoding.DecodeInterspersedHexFromASCIIString(fp.Value)
 	if err != nil {
 		return "", err
 	}

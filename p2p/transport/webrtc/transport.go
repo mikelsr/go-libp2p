@@ -448,7 +448,7 @@ func (t *WebRTCTransport) generateNoisePrologue(pc *webrtc.PeerConnection, hash 
 		return nil, err
 	}
 
-	localFpBytes, err := encoding.DecodeInterpersedHexFromASCIIString(localFp.Value)
+	localFpBytes, err := encoding.DecodeInterspersedHexFromASCIIString(localFp.Value)
 	if err != nil {
 		return nil, err
 	}
