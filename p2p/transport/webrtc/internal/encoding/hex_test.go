@@ -14,12 +14,13 @@ func TestEncodeInterspersedHex(t *testing.T) {
 	require.Equal(t, "ba:78:16:bf:8f:01:cf:ea:41:41:40:de:5d:ae:22:23:b0:03:61:a3:96:17:7a:9c:b4:10:ff:61:f2:00:15:ad", EncodeInterspersedHex(b))
 }
 
-func TestEncodeInterspersedHexToBuilder(t *testing.T) {
-	b, err := hex.DecodeString("ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad")
-	require.NoError(t, err)
-	var builder strings.Builder
-	EncodeInterspersedHexToBuilder(b, &builder)
-	require.Equal(t, "ba:78:16:bf:8f:01:cf:ea:41:41:40:de:5d:ae:22:23:b0:03:61:a3:96:17:7a:9c:b4:10:ff:61:f2:00:15:ad", builder.String())
+func BenchmarkEncodeInterspersedHex(b *testing.B) {
+	data, err := hex.DecodeString("ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad")
+	require.NoError(b, err)
+
+	for i := 0; i < b.N; i++ {
+		EncodeInterspersedHex(data)
+	}
 }
 
 func TestDecodeInterpersedHexStringLowerCase(t *testing.T) {

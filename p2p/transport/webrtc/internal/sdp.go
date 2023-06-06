@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/libp2p/go-libp2p/p2p/transport/webrtc/internal/encoding"
-	multihash "github.com/multiformats/go-multihash"
+	"github.com/multiformats/go-multihash"
 )
 
 // clientSDP describes an SDP format string which can be used
@@ -85,7 +85,7 @@ func RenderServerSDP(addr *net.UDPAddr, ufrag string, fingerprint multihash.Deco
 	builder.Grow(len(fingerprint.Digest)*3 + 8)
 	builder.WriteString(sdpString)
 	builder.WriteByte(' ')
-	encoding.EncodeInterspersedHexToBuilder(fingerprint.Digest, &builder)
+	builder.WriteString(encoding.EncodeInterspersedHex(fingerprint.Digest))
 	fp := builder.String()
 
 	return fmt.Sprintf(

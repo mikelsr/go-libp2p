@@ -9,7 +9,6 @@ package encoding
 import (
 	"encoding/hex"
 	"errors"
-	"strings"
 )
 
 // EncodeInterspersedHex encodes a byte slice into a string of hex characters,
@@ -17,28 +16,25 @@ import (
 //
 // Example: { 0x01, 0x02, 0x03 } -> "01:02:03"
 func EncodeInterspersedHex(src []byte) string {
-	var builder strings.Builder
-	EncodeInterspersedHexToBuilder(src, &builder)
-	return builder.String()
-}
-
-// EncodeInterspersedHexToBuilder encodes a byte slice into a of hex characters,
-// separating each encoded byte with a colon (':'). String is written to the builder.
-//
-// Example: { 0x01, 0x02, 0x03 } -> "01:02:03"
-func EncodeInterspersedHexToBuilder(src []byte, builder *strings.Builder) {
 	if len(src) == 0 {
-		return
+		return ""
 	}
-	builder.Grow(len(src)*3 - 1)
-	v := src[0]
-	builder.WriteByte(hextable[v>>4])
-	builder.WriteByte(hextable[v&0x0f])
-	for _, v = range src[1:] {
-		builder.WriteByte(':')
-		builder.WriteByte(hextable[v>>4])
-		builder.WriteByte(hextable[v&0x0f])
+	s := hex.EncodeToString(src)
+	n := len(s)
+	// Determine number of colons
+	colons := n / 2
+	if n%2 == 0 {
+		colons--
 	}
+	buffer := make([]byte, n+colons)
+
+	for i, j := 0, 0; i < n; i, j = i+2, j+3 {
+		copy(buffer[j:j+2], s[i:i+2])
+		if j+3 < len(buffer) {
+			buffer[j+2] = ':'
+		}
+	}
+	return string(buffer)
 }
 
 // DecodeInterspersedHex decodes a byte slice string of hex characters into a byte slice,
@@ -140,7 +136,6 @@ var (
 )
 
 const (
-	hextable        = "0123456789abcdef"
 	reverseHexTable = "" +
 		"\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff" +
 		"\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff" +
