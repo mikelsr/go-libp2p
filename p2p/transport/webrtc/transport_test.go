@@ -12,16 +12,18 @@ import (
 	"testing"
 	"time"
 
+	"golang.org/x/crypto/sha3"
+
 	"github.com/libp2p/go-libp2p/core/crypto"
 	"github.com/libp2p/go-libp2p/core/network"
 	"github.com/libp2p/go-libp2p/core/peer"
 	ttransport "github.com/libp2p/go-libp2p/p2p/transport/testsuite"
-	"github.com/multiformats/go-multiaddr"
+
+	ma "github.com/multiformats/go-multiaddr"
 	"github.com/multiformats/go-multibase"
 	"github.com/multiformats/go-multihash"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"golang.org/x/crypto/sha3"
 )
 
 func getTransport(t *testing.T, opts ...Option) (*WebRTCTransport, peer.ID) {
@@ -38,39 +40,37 @@ func getTransport(t *testing.T, opts ...Option) (*WebRTCTransport, peer.ID) {
 }
 
 var (
-	listenerIp net.IP
-	dialerIp   net.IP
+	listenerIP net.IP
+	dialerIP   net.IP
 )
 
 func TestMain(m *testing.M) {
-	listenerIp, dialerIp = getListenerAndDialerIP()
+	listenerIP, dialerIP = getListenerAndDialerIP()
 	os.Exit(m.Run())
 }
 
 func TestTransportWebRTC_CanDial(t *testing.T) {
 	tr, _ := getTransport(t)
 	invalid := []string{
-		"/ip4/1.2.3.4/udp/1234/p2p-webrtc-direct",
-		"/dns/test.test/udp/1234/p2p-webrtc-direct",
+		"/ip4/1.2.3.4/udp/1234/webrtc-direct",
+		"/dns/test.test/udp/1234/webrtc-direct",
 	}
 
 	valid := []string{
-		"/ip4/1.2.3.4/udp/1234/p2p-webrtc-direct/certhash/uEiAsGPzpiPGQzSlVHRXrUCT5EkTV7YFrV4VZ3hpEKTd_zg",
-		"/ip6/0:0:0:0:0:0:0:1/udp/1234/p2p-webrtc-direct/certhash/uEiAsGPzpiPGQzSlVHRXrUCT5EkTV7YFrV4VZ3hpEKTd_zg",
-		"/ip6/::1/udp/1234/p2p-webrtc-direct/certhash/uEiAsGPzpiPGQzSlVHRXrUCT5EkTV7YFrV4VZ3hpEKTd_zg",
-		"/dns/test.test/udp/1234/p2p-webrtc-direct/certhash/uEiAsGPzpiPGQzSlVHRXrUCT5EkTV7YFrV4VZ3hpEKTd_zg",
+		"/ip4/1.2.3.4/udp/1234/webrtc-direct/certhash/uEiAsGPzpiPGQzSlVHRXrUCT5EkTV7YFrV4VZ3hpEKTd_zg",
+		"/ip6/0:0:0:0:0:0:0:1/udp/1234/webrtc-direct/certhash/uEiAsGPzpiPGQzSlVHRXrUCT5EkTV7YFrV4VZ3hpEKTd_zg",
+		"/ip6/::1/udp/1234/webrtc-direct/certhash/uEiAsGPzpiPGQzSlVHRXrUCT5EkTV7YFrV4VZ3hpEKTd_zg",
+		"/dns/test.test/udp/1234/webrtc-direct/certhash/uEiAsGPzpiPGQzSlVHRXrUCT5EkTV7YFrV4VZ3hpEKTd_zg",
 	}
 
 	for _, addr := range invalid {
-		ma, err := multiaddr.NewMultiaddr(addr)
-		require.NoError(t, err)
-		require.Equal(t, false, tr.CanDial(ma))
+		a := ma.StringCast(addr)
+		require.Equal(t, false, tr.CanDial(a))
 	}
 
 	for _, addr := range valid {
-		ma, err := multiaddr.NewMultiaddr(addr)
-		require.NoError(t, err)
-		require.Equal(t, true, tr.CanDial(ma), addr)
+		a := ma.StringCast(addr)
+		require.Equal(t, true, tr.CanDial(a), addr)
 	}
 }
 
@@ -81,7 +81,7 @@ func TestTransportWebRTC_ListenFailsOnNonWebRTCMultiaddr(t *testing.T) {
 		"/ip4/0.0.0.0/tcp/0/wss",
 	}
 	for _, addr := range testAddrs {
-		listenMultiaddr, err := multiaddr.NewMultiaddr(addr)
+		listenMultiaddr, err := ma.NewMultiaddr(addr)
 		require.NoError(t, err)
 		listener, err := tr.Listen(listenMultiaddr)
 		require.Error(t, err)
@@ -102,7 +102,7 @@ func TestTransportWebRTC_DialFailsOnUnsupportedHashFunction(t *testing.T) {
 		require.NoError(t, err)
 		return certhash
 	}()
-	testaddr, err := multiaddr.NewMultiaddr("/ip4/1.2.3.4/udp/1234/p2p-webrtc-direct/certhash/" + certhash)
+	testaddr, err := ma.NewMultiaddr("/ip4/1.2.3.4/udp/1234/webrtc-direct/certhash/" + certhash)
 	require.NoError(t, err)
 	_, err = tr.Dial(context.Background(), testaddr, "")
 	require.ErrorContains(t, err, "unsupported hash function")
@@ -111,8 +111,7 @@ func TestTransportWebRTC_DialFailsOnUnsupportedHashFunction(t *testing.T) {
 func TestTransportWebRTC_CanListenSingle(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
 	tr1, connectingPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
@@ -153,8 +152,7 @@ func TestTransportWebRTC_CanListenMultiple(t *testing.T) {
 	count := 3
 	tr, listeningPeer := getTransport(t, WithListenerMaxInFlightConnections(uint32(count)))
 
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -197,8 +195,7 @@ func TestTransportWebRTC_CanListenMultiple(t *testing.T) {
 
 func TestTransportWebRTC_CanCreateSuccessiveConnections(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 	count := 2
@@ -221,8 +218,7 @@ func TestTransportWebRTC_CanCreateSuccessiveConnections(t *testing.T) {
 func TestTransportWebRTC_ListenerCanCreateStreams(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
 	tr1, connectingPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -264,8 +260,7 @@ func TestTransportWebRTC_ListenerCanCreateStreams(t *testing.T) {
 
 func TestTransportWebRTC_DialerCanCreateStreams(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -308,8 +303,7 @@ func TestTransportWebRTC_DialerCanCreateStreams(t *testing.T) {
 func TestTransportWebRTC_DialerCanCreateStreamsMultiple(t *testing.T) {
 	count := 5
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -371,8 +365,7 @@ func TestTransportWebRTC_DialerCanCreateStreamsMultiple(t *testing.T) {
 
 func TestTransportWebRTC_Deadline(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 	tr1, connectingPeer := getTransport(t)
@@ -425,8 +418,7 @@ func TestTransportWebRTC_Deadline(t *testing.T) {
 
 func TestTransportWebRTC_StreamWriteBufferContention(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -467,8 +459,7 @@ func TestTransportWebRTC_StreamWriteBufferContention(t *testing.T) {
 
 func TestTransportWebRTC_Read(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -529,8 +520,7 @@ func TestTransportWebRTC_Read(t *testing.T) {
 
 func TestTransportWebRTC_RemoteReadsAfterClose(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -580,8 +570,7 @@ func TestTransportWebRTC_RemoteReadsAfterClose(t *testing.T) {
 
 func TestTransportWebRTC_RemoteReadsAfterClose2(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -629,8 +618,7 @@ func TestTransportWebRTC_RemoteReadsAfterClose2(t *testing.T) {
 
 func TestTransportWebRTC_Close(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -701,8 +689,7 @@ func TestTransportWebRTC_Close(t *testing.T) {
 
 func TestTransportWebRTC_ReceiveFlagsAfterReadClosed(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -762,7 +749,7 @@ func TestTransportWebRTC_PeerConnectionDTLSFailed(t *testing.T) {
 	}
 
 	tr, listeningPeer := getTransport(t)
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	require.NoError(t, err)
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
@@ -771,15 +758,15 @@ func TestTransportWebRTC_PeerConnectionDTLSFailed(t *testing.T) {
 
 	go listener.Accept()
 
-	badMultiaddr, _ := multiaddr.SplitFunc(listener.Multiaddr(), func(component multiaddr.Component) bool {
-		return component.Protocol().Code == multiaddr.P_CERTHASH
+	badMultiaddr, _ := ma.SplitFunc(listener.Multiaddr(), func(component ma.Component) bool {
+		return component.Protocol().Code == ma.P_CERTHASH
 	})
 
 	encodedCerthash, err := multihash.Encode(testMultihash.Digest, testMultihash.Code)
 	require.NoError(t, err)
 	badEncodedCerthash, err := multibase.Encode(multibase.Base58BTC, encodedCerthash)
 	require.NoError(t, err)
-	badCerthash, err := multiaddr.NewMultiaddr(fmt.Sprintf("/certhash/%s", badEncodedCerthash))
+	badCerthash, err := ma.NewMultiaddr(fmt.Sprintf("/certhash/%s", badEncodedCerthash))
 	require.NoError(t, err)
 	badMultiaddr = badMultiaddr.Encapsulate(badCerthash)
 
@@ -797,8 +784,7 @@ func TestTransportWebRTC_StreamResetOnPeerConnectionFailure(t *testing.T) {
 	tr.peerConnectionTimeouts.Failed = 3 * time.Second
 	tr.peerConnectionTimeouts.Keepalive = time.Second
 
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	lsnr, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
@@ -855,8 +841,7 @@ func TestTransportWebRTC_MaxInFlightRequests(t *testing.T) {
 	tr.peerConnectionTimeouts.Disconnect = 8 * time.Second
 	tr.peerConnectionTimeouts.Failed = 10 * time.Second
 	tr.peerConnectionTimeouts.Keepalive = 5 * time.Second
-	listenMultiaddr, err := multiaddr.NewMultiaddr(fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp))
-	require.NoError(t, err)
+	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	listener, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 	defer listener.Close()
@@ -910,5 +895,5 @@ func TestWebrtcTransport(t *testing.T) {
 	t.Skip("This test does not work for WebRTC due to the way it is setup, see comments for more explanation")
 	ta, _ := getTransport(t)
 	tb, _ := getTransport(t)
-	ttransport.SubtestTransport(t, ta, tb, fmt.Sprintf("/ip4/%s/udp/0/p2p-webrtc-direct", listenerIp), "peerA")
+	ttransport.SubtestTransport(t, ta, tb, fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP), "peerA")
 }

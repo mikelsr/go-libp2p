@@ -141,7 +141,7 @@ func New(privKey ic.PrivKey, psk pnet.PSK, gater connmgr.ConnectionGater, rcmgr 
 }
 
 func (t *WebRTCTransport) Protocols() []int {
-	return []int{ma.P_P2P_WEBRTC_DIRECT}
+	return []int{ma.P_WEBRTC_DIRECT}
 }
 
 func (t *WebRTCTransport) Proxy() bool {
@@ -152,7 +152,7 @@ func (t *WebRTCTransport) CanDial(addr ma.Multiaddr) bool {
 	return dialMatcher.Matches(addr)
 }
 
-var webRTCMultiAddr = ma.StringCast("/p2p-webrtc-direct")
+var webRTCMultiAddr = ma.StringCast("/webrtc-direct")
 
 func (t *WebRTCTransport) Listen(addr ma.Multiaddr) (tpt.Listener, error) {
 	addr, wrtcComponent := ma.SplitLast(addr)
