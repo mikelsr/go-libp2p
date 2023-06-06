@@ -1,4 +1,4 @@
-package encoding
+package libp2pwebrtc
 
 // The code in this file is adapted from the Go standard library's hex package.
 // As found in https://cs.opensource.google/go/go/+/refs/tags/go1.20.2:src/encoding/hex/hex.go
@@ -11,11 +11,11 @@ import (
 	"errors"
 )
 
-// EncodeInterspersedHex encodes a byte slice into a string of hex characters,
+// encodeInterspersedHex encodes a byte slice into a string of hex characters,
 // separating each encoded byte with a colon (':').
 //
 // Example: { 0x01, 0x02, 0x03 } -> "01:02:03"
-func EncodeInterspersedHex(src []byte) string {
+func encodeInterspersedHex(src []byte) string {
 	if len(src) == 0 {
 		return ""
 	}
@@ -39,13 +39,13 @@ func EncodeInterspersedHex(src []byte) string {
 
 var errUnexpectedIntersperseHexChar = errors.New("unexpected character in interspersed hex string")
 
-// DecodeInterspersedHexFromASCIIString decodes an ASCII string of hex characters into a byte slice,
+// decodeInterspersedHexFromASCIIString decodes an ASCII string of hex characters into a byte slice,
 // where the hex characters are expected to be separated by a colon (':').
 //
 // NOTE that this function returns an error in case the input string contains non-ASCII characters.
 //
 // Example: "01:02:03" -> { 0x01, 0x02, 0x03 }
-func DecodeInterspersedHexFromASCIIString(s string) ([]byte, error) {
+func decodeInterspersedHexFromASCIIString(s string) ([]byte, error) {
 	n := len(s)
 	buffer := make([]byte, n/3*2+n%3)
 	j := 0

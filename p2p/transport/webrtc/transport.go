@@ -20,16 +20,14 @@ import (
 	"github.com/libp2p/go-libp2p/core/sec"
 	tpt "github.com/libp2p/go-libp2p/core/transport"
 	"github.com/libp2p/go-libp2p/p2p/security/noise"
-	"github.com/libp2p/go-libp2p/p2p/transport/webrtc/internal"
-	"github.com/libp2p/go-libp2p/p2p/transport/webrtc/internal/encoding"
 
 	logging "github.com/ipfs/go-log/v2"
 	ma "github.com/multiformats/go-multiaddr"
 	mafmt "github.com/multiformats/go-multiaddr-fmt"
 	manet "github.com/multiformats/go-multiaddr/net"
 	"github.com/multiformats/go-multihash"
-	pionlogger "github.com/pion/logging"
 
+	pionlogger "github.com/pion/logging"
 	"github.com/pion/webrtc/v3"
 )
 
@@ -195,7 +193,7 @@ func (t *WebRTCTransport) listenSocket(socket *net.UDPConn) (tpt.Listener, error
 		return nil, err
 	}
 
-	encodedLocalFingerprint, err := internal.EncodeDTLSFingerprint(listenerFingerprint)
+	encodedLocalFingerprint, err := encodeDTLSFingerprint(listenerFingerprint)
 	if err != nil {
 		return nil, err
 	}
@@ -251,11 +249,11 @@ func (t *WebRTCTransport) dial(
 		}
 	}()
 
-	remoteMultihash, err := internal.DecodeRemoteFingerprint(remoteMultiaddr)
+	remoteMultihash, err := decodeRemoteFingerprint(remoteMultiaddr)
 	if err != nil {
 		return nil, fmt.Errorf("decode fingerprint: %w", err)
 	}
-	remoteHashFunction, ok := internal.GetSupportedSDPHash(remoteMultihash.Code)
+	remoteHashFunction, ok := getSupportedSDPHash(remoteMultihash.Code)
 	if !ok {
 		return nil, fmt.Errorf("unsupported hash function: %w", nil)
 	}
@@ -329,7 +327,7 @@ func (t *WebRTCTransport) dial(
 		return nil, fmt.Errorf("set local description: %w", err)
 	}
 
-	answerSDPString, err := internal.RenderServerSDP(raddr, ufrag, *remoteMultihash)
+	answerSDPString, err := createServerSDP(raddr, ufrag, *remoteMultihash)
 	if err != nil {
 		return nil, fmt.Errorf("render server SDP: %w", err)
 	}
@@ -443,12 +441,12 @@ func (t *WebRTCTransport) generateNoisePrologue(pc *webrtc.PeerConnection, hash 
 		return nil, err
 	}
 
-	remoteFpBytes, err := internal.Fingerprint(cert, hash)
+	remoteFpBytes, err := parseFingerprint(cert, hash)
 	if err != nil {
 		return nil, err
 	}
 
-	localFpBytes, err := encoding.DecodeInterspersedHexFromASCIIString(localFp.Value)
+	localFpBytes, err := decodeInterspersedHexFromASCIIString(localFp.Value)
 	if err != nil {
 		return nil, err
 	}

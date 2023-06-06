@@ -1,4 +1,4 @@
-package internal
+package libp2pwebrtc
 
 import (
 	"crypto"
@@ -6,7 +6,6 @@ import (
 	"net"
 	"strings"
 
-	"github.com/libp2p/go-libp2p/p2p/transport/webrtc/internal/encoding"
 	"github.com/multiformats/go-multihash"
 )
 
@@ -32,7 +31,7 @@ a=sctp-port:5000
 a=max-message-size:16384
 `
 
-func RenderClientSDP(addr *net.UDPAddr, ufrag string) string {
+func createClientSDP(addr *net.UDPAddr, ufrag string) string {
 	ipVersion := "IP4"
 	if addr.IP.To4() == nil {
 		ipVersion = "IP6"
@@ -70,7 +69,7 @@ a=candidate:1 1 UDP 1 %[2]s %[3]d typ host
 a=end-of-candidates
 `
 
-func RenderServerSDP(addr *net.UDPAddr, ufrag string, fingerprint multihash.DecodedMultihash) (string, error) {
+func createServerSDP(addr *net.UDPAddr, ufrag string, fingerprint multihash.DecodedMultihash) (string, error) {
 	ipVersion := "IP4"
 	if addr.IP.To4() == nil {
 		ipVersion = "IP6"
@@ -85,7 +84,7 @@ func RenderServerSDP(addr *net.UDPAddr, ufrag string, fingerprint multihash.Deco
 	builder.Grow(len(fingerprint.Digest)*3 + 8)
 	builder.WriteString(sdpString)
 	builder.WriteByte(' ')
-	builder.WriteString(encoding.EncodeInterspersedHex(fingerprint.Digest))
+	builder.WriteString(encodeInterspersedHex(fingerprint.Digest))
 	fp := builder.String()
 
 	return fmt.Sprintf(
@@ -98,10 +97,10 @@ func RenderServerSDP(addr *net.UDPAddr, ufrag string, fingerprint multihash.Deco
 	), nil
 }
 
-// GetSupportedSDPHash converts a multihash code to the
+// getSupportedSDPHash converts a multihash code to the
 // corresponding crypto.Hash for supported protocols. If a
 // crypto.Hash cannot be found, it returns `(0, false)`
-func GetSupportedSDPHash(code uint64) (crypto.Hash, bool) {
+func getSupportedSDPHash(code uint64) (crypto.Hash, bool) {
 	switch code {
 	case multihash.MD5:
 		return crypto.MD5, true

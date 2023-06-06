@@ -1,11 +1,9 @@
-package internal
+package libp2pwebrtc
 
 import (
 	"crypto"
 	"crypto/x509"
 	"errors"
-
-	"github.com/libp2p/go-libp2p/p2p/transport/webrtc/internal/encoding"
 
 	ma "github.com/multiformats/go-multiaddr"
 	"github.com/multiformats/go-multibase"
@@ -13,15 +11,13 @@ import (
 	"github.com/pion/webrtc/v3"
 )
 
-// Fingerprint is forked from pion to avoid bytes to string alloc,
+// parseFingerprint is forked from pion to avoid bytes to string alloc,
 // and to avoid the entire hex interspersing when we do not need it anyway
 
-var (
-	errHashUnavailable = errors.New("fingerprint: hash algorithm is not linked into the binary")
-)
+var errHashUnavailable = errors.New("fingerprint: hash algorithm is not linked into the binary")
 
-// Fingerprint creates a fingerprint for a certificate using the specified hash algorithm
-func Fingerprint(cert *x509.Certificate, algo crypto.Hash) ([]byte, error) {
+// parseFingerprint creates a fingerprint for a certificate using the specified hash algorithm
+func parseFingerprint(cert *x509.Certificate, algo crypto.Hash) ([]byte, error) {
 	if !algo.Available() {
 		return nil, errHashUnavailable
 	}
@@ -32,7 +28,7 @@ func Fingerprint(cert *x509.Certificate, algo crypto.Hash) ([]byte, error) {
 	return h.Sum(nil), nil
 }
 
-func DecodeRemoteFingerprint(maddr ma.Multiaddr) (*mh.DecodedMultihash, error) {
+func decodeRemoteFingerprint(maddr ma.Multiaddr) (*mh.DecodedMultihash, error) {
 	remoteFingerprintMultibase, err := maddr.ValueForProtocol(ma.P_CERTHASH)
 	if err != nil {
 		return nil, err
@@ -44,8 +40,8 @@ func DecodeRemoteFingerprint(maddr ma.Multiaddr) (*mh.DecodedMultihash, error) {
 	return mh.Decode(data)
 }
 
-func EncodeDTLSFingerprint(fp webrtc.DTLSFingerprint) (string, error) {
-	digest, err := encoding.DecodeInterspersedHexFromASCIIString(fp.Value)
+func encodeDTLSFingerprint(fp webrtc.DTLSFingerprint) (string, error) {
+	digest, err := decodeInterspersedHexFromASCIIString(fp.Value)
 	if err != nil {
 		return "", err
 	}

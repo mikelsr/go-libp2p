@@ -1,4 +1,4 @@
-package internal
+package libp2pwebrtc
 
 import (
 	"encoding/hex"
@@ -43,7 +43,7 @@ func TestRenderServerSDP(t *testing.T) {
 	ufrag := "d2c0fc07-8bb3-42ae-bae2-a6fce8a0b581"
 	fingerprint := testMultihash
 
-	sdp, err := RenderServerSDP(addr, ufrag, fingerprint)
+	sdp, err := createServerSDP(addr, ufrag, fingerprint)
 	require.NoError(t, err)
 	require.Equal(t, expectedServerSDP, sdp)
 }
@@ -68,7 +68,7 @@ a=max-message-size:16384
 func TestRenderClientSDP(t *testing.T) {
 	addr := &net.UDPAddr{IP: net.IPv4(0, 0, 0, 0), Port: 37826}
 	ufrag := "d2c0fc07-8bb3-42ae-bae2-a6fce8a0b581"
-	sdp := RenderClientSDP(addr, ufrag)
+	sdp := createClientSDP(addr, ufrag)
 	require.Equal(t, expectedClientSDP, sdp)
 }
 
@@ -77,7 +77,7 @@ func BenchmarkRenderClientSDP(b *testing.B) {
 	ufrag := "d2c0fc07-8bb3-42ae-bae2-a6fce8a0b581"
 
 	for i := 0; i < b.N; i++ {
-		RenderClientSDP(addr, ufrag)
+		createClientSDP(addr, ufrag)
 	}
 }
 
@@ -95,7 +95,7 @@ func BenchmarkRenderServerSDP(b *testing.B) {
 	fingerprint := testMultihash
 
 	for i := 0; i < b.N; i++ {
-		RenderServerSDP(addr, ufrag, fingerprint)
+		createServerSDP(addr, ufrag, fingerprint)
 	}
 
 }
