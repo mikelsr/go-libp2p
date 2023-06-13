@@ -175,6 +175,10 @@ func (l *listener) handleCandidate(ctx context.Context, addr *candidateAddr) (tp
 		scope.Done()
 		return nil, err
 	}
+	if l.transport.gater != nil && !l.transport.gater.InterceptSecured(network.DirInbound, conn.RemotePeer(), conn) {
+		conn.Close()
+		return nil, errors.New("connection gated")
+	}
 	return conn, nil
 }
 
@@ -262,6 +266,8 @@ func (l *listener) setupConnection(
 		return nil, err
 	}
 
+	localMultiaddrWithoutCerthash, _ := ma.SplitFunc(l.localMultiaddr, func(c ma.Component) bool { return c.Protocol().Code == ma.P_CERTHASH })
+
 	handshakeChannel := newStream(nil, rawDatachannel, rwc, l.localAddr, addr.raddr)
 	// The connection is instantiated before performing the Noise handshake. This is
 	// to handle the case where the remote is faster and attempts to initiate a stream
@@ -272,7 +278,7 @@ func (l *listener) setupConnection(
 		l.transport,
 		scope,
 		l.transport.localPeerId,
-		l.localMultiaddr,
+		localMultiaddrWithoutCerthash,
 		"",  // remotePeer
 		nil, // remoteKey
 		remoteMultiaddr,
