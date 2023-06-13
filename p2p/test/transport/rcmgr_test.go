@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	gomock "github.com/golang/mock/gomock"
+	"github.com/golang/mock/gomock"
 	"github.com/libp2p/go-libp2p/core/host"
 	"github.com/libp2p/go-libp2p/core/network"
 	mocknetwork "github.com/libp2p/go-libp2p/core/network/mocks"
@@ -55,7 +55,7 @@ func TestResourceManagerIsUsed(t *testing.T) {
 					}
 
 					expectFd := true
-					if strings.Contains(tc.Name, "QUIC") || strings.Contains(tc.Name, "WebTransport") {
+					if strings.Contains(tc.Name, "QUIC") || strings.Contains(tc.Name, "WebTransport") || strings.Contains(tc.Name, "WebRTC") {
 						expectFd = false
 					}
 
@@ -86,7 +86,7 @@ func TestResourceManagerIsUsed(t *testing.T) {
 						}
 						return nil
 					})
-					connScope.EXPECT().Done()
+					connScope.EXPECT().Done().MinTimes(1)
 
 					var allStreamsDone sync.WaitGroup
 

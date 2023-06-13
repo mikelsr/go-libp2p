@@ -214,12 +214,11 @@ func (t *WebRTCTransport) listenSocket(socket *net.UDPConn) (tpt.Listener, error
 }
 
 func (t *WebRTCTransport) Dial(ctx context.Context, remoteMultiaddr ma.Multiaddr, p peer.ID) (tpt.CapableConn, error) {
-	scope, err := t.rcmgr.OpenConnection(network.DirOutbound, true, remoteMultiaddr)
+	scope, err := t.rcmgr.OpenConnection(network.DirOutbound, false, remoteMultiaddr)
 	if err != nil {
 		return nil, err
 	}
-	err = scope.SetPeer(p)
-	if err != nil {
+	if err := scope.SetPeer(p); err != nil {
 		scope.Done()
 		return nil, err
 	}
