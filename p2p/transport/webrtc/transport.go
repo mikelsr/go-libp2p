@@ -232,7 +232,6 @@ func (t *WebRTCTransport) Dial(ctx context.Context, remoteMultiaddr ma.Multiaddr
 }
 
 func (t *WebRTCTransport) dial(ctx context.Context, scope network.ConnManagementScope, remoteMultiaddr ma.Multiaddr, p peer.ID) (tConn tpt.CapableConn, err error) {
-	fmt.Println(remoteMultiaddr)
 	var pc *webrtc.PeerConnection
 	defer func() {
 		if err != nil {
@@ -387,6 +386,10 @@ func (t *WebRTCTransport) dial(ctx context.Context, scope network.ConnManagement
 	secConn, err := t.noiseHandshake(ctx, pc, channel, p, remoteHashFunction, false)
 	if err != nil {
 		return conn, err
+	}
+	if t.gater != nil && !t.gater.InterceptSecured(network.DirOutbound, p, conn) {
+		secConn.Close()
+		return nil, fmt.Errorf("secured connection gated")
 	}
 	conn.setRemotePublicKey(secConn.RemotePublicKey())
 	return conn, nil

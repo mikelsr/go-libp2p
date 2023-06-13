@@ -97,7 +97,7 @@ func TestInterceptSecuredOutgoing(t *testing.T) {
 				connGater.EXPECT().InterceptPeerDial(h2.ID()).Return(true),
 				connGater.EXPECT().InterceptAddrDial(h2.ID(), gomock.Any()).Return(true),
 				connGater.EXPECT().InterceptSecured(network.DirOutbound, h2.ID(), gomock.Any()).Do(func(_ network.Direction, _ peer.ID, addrs network.ConnMultiaddrs) {
-					// remove the certhash component from WebTransport addresses
+					// remove the certhash component from WebTransport and WebRTC addresses
 					require.Equal(t, stripCertHash(h2.Addrs()[0]).String(), addrs.RemoteMultiaddr().String())
 				}),
 			)
