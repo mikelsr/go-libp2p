@@ -366,6 +366,8 @@ func (t *WebRTCTransport) dial(ctx context.Context, scope network.ConnManagement
 		return nil, err
 	}
 
+	remoteMultiaddrWithoutCerthash, _ := ma.SplitFunc(remoteMultiaddr, func(c ma.Component) bool { return c.Protocol().Code == ma.P_CERTHASH })
+
 	// we can only know the remote public key after the noise handshake,
 	// but need to set up the callbacks on the peerconnection
 	conn, err := newConnection(
@@ -377,7 +379,7 @@ func (t *WebRTCTransport) dial(ctx context.Context, scope network.ConnManagement
 		localAddr,
 		p,
 		nil,
-		remoteMultiaddr,
+		remoteMultiaddrWithoutCerthash,
 	)
 	if err != nil {
 		return nil, err
