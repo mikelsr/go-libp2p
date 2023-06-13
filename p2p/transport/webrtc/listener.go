@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"net"
 	"os"
@@ -25,7 +26,14 @@ import (
 	"github.com/pion/webrtc/v3"
 )
 
-var _ tpt.Listener = &listener{}
+type connMultiaddrs struct {
+	local, remote ma.Multiaddr
+}
+
+var _ network.ConnMultiaddrs = &connMultiaddrs{}
+
+func (c *connMultiaddrs) LocalMultiaddr() ma.Multiaddr  { return c.local }
+func (c *connMultiaddrs) RemoteMultiaddr() ma.Multiaddr { return c.remote }
 
 const (
 	candidateSetupTimeout         = 20 * time.Second
@@ -64,6 +72,8 @@ type listener struct {
 	ctx    context.Context
 	cancel context.CancelFunc
 }
+
+var _ tpt.Listener = &listener{}
 
 func newListener(transport *WebRTCTransport, laddr ma.Multiaddr, socket net.PacketConn, config webrtc.Configuration) (*listener, error) {
 	localFingerprints, err := config.Certificates[0].GetFingerprints()
@@ -147,6 +157,14 @@ func (l *listener) handleCandidate(ctx context.Context, addr *candidateAddr) (tp
 	remoteMultiaddr, err := manet.FromNetAddr(addr.raddr)
 	if err != nil {
 		return nil, err
+	}
+	if l.transport.gater != nil {
+		localAddr, _ := ma.SplitFunc(l.localMultiaddr, func(c ma.Component) bool { return c.Protocol().Code == ma.P_CERTHASH })
+		if !l.transport.gater.InterceptAccept(&connMultiaddrs{local: localAddr, remote: remoteMultiaddr}) {
+			// The connection attempt is rejected before we can send the client an error.
+			// This means that the connection attempt will time out.
+			return nil, errors.New("connection gated")
+		}
 	}
 	scope, err := l.transport.rcmgr.OpenConnection(network.DirInbound, false, remoteMultiaddr)
 	if err != nil {
