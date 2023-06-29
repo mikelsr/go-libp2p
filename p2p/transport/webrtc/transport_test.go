@@ -778,20 +778,20 @@ func TestTransportWebRTC_PeerConnectionDTLSFailed(t *testing.T) {
 	require.ErrorContains(t, err, "failed")
 }
 
-func TestTransportWebRTC_StreamResetOnPeerConnectionFailure(t *testing.T) {
+func TestStreamResetOnPeerConnectionFailure(t *testing.T) {
 	tr, listeningPeer := getTransport(t)
-	tr.peerConnectionTimeouts.Disconnect = 2 * time.Second
-	tr.peerConnectionTimeouts.Failed = 3 * time.Second
-	tr.peerConnectionTimeouts.Keepalive = time.Second
+	tr.peerConnectionTimeouts.Disconnect = 100 * time.Millisecond
+	tr.peerConnectionTimeouts.Failed = 150 * time.Millisecond
+	tr.peerConnectionTimeouts.Keepalive = 50 * time.Millisecond
 
 	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
 	lsnr, err := tr.Listen(listenMultiaddr)
 	require.NoError(t, err)
 
 	tr1, connectingPeer := getTransport(t)
-	tr1.peerConnectionTimeouts.Disconnect = 2 * time.Second
-	tr1.peerConnectionTimeouts.Failed = 3 * time.Second
-	tr1.peerConnectionTimeouts.Keepalive = time.Second
+	tr1.peerConnectionTimeouts.Disconnect = 100 * time.Millisecond
+	tr1.peerConnectionTimeouts.Failed = 150 * time.Millisecond
+	tr1.peerConnectionTimeouts.Keepalive = 50 * time.Millisecond
 
 	done := make(chan struct{})
 	go func() {
