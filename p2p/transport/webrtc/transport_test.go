@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"net"
-	"os"
 	"sync"
 	"sync/atomic"
 	"testing"
@@ -39,14 +38,10 @@ func getTransport(t *testing.T, opts ...Option) (*WebRTCTransport, peer.ID) {
 	return transport, peerID
 }
 
-var (
-	listenerIP net.IP
-	dialerIP   net.IP
-)
+var listenerIP, dialerIP net.IP
 
-func TestMain(m *testing.M) {
+func init() {
 	listenerIP, dialerIP = getListenerAndDialerIP()
-	os.Exit(m.Run())
 }
 
 func TestTransportWebRTC_CanDial(t *testing.T) {
