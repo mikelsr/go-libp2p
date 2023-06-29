@@ -33,7 +33,7 @@ import (
 
 var log = logging.Logger("webrtc-transport")
 
-var dialMatcher = mafmt.And(mafmt.UDP, mafmt.Base(ma.P_P2P_WEBRTC_DIRECT), mafmt.Base(ma.P_CERTHASH))
+var dialMatcher = mafmt.And(mafmt.UDP, mafmt.Base(ma.P_WEBRTC_DIRECT), mafmt.Base(ma.P_CERTHASH))
 
 const (
 	// handshakeChannelNegotiated is used to specify that the
