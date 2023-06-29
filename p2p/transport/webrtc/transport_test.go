@@ -833,54 +833,34 @@ func TestTransportWebRTC_StreamResetOnPeerConnectionFailure(t *testing.T) {
 	}
 }
 
-func TestTransportWebRTC_MaxInFlightRequests(t *testing.T) {
-	count := uint32(3)
+func TestMaxInFlightRequests(t *testing.T) {
+	const count = 3
 	tr, listeningPeer := getTransport(t,
 		WithListenerMaxInFlightConnections(count),
 	)
-	tr.peerConnectionTimeouts.Disconnect = 8 * time.Second
-	tr.peerConnectionTimeouts.Failed = 10 * time.Second
-	tr.peerConnectionTimeouts.Keepalive = 5 * time.Second
-	listenMultiaddr := ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP))
-	listener, err := tr.Listen(listenMultiaddr)
+	listener, err := tr.Listen(ma.StringCast(fmt.Sprintf("/ip4/%s/udp/0/webrtc-direct", listenerIP)))
 	require.NoError(t, err)
 	defer listener.Close()
 
-	dialerCount := count + 2
-
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-
 	var wg sync.WaitGroup
-	start := make(chan struct{})
-	ready := make(chan struct{}, dialerCount)
-	var success uint32
-	for i := 0; uint32(i) < dialerCount; i++ {
+	var success, fails atomic.Int32
+	for i := 0; i < count+1; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
 			dialer, _ := getTransport(t)
-			dialer.peerConnectionTimeouts.Disconnect = 8 * time.Second
-			dialer.peerConnectionTimeouts.Failed = 10 * time.Second
-			dialer.peerConnectionTimeouts.Keepalive = 5 * time.Second
-			ready <- struct{}{}
-			<-start
-			_, err := dialer.Dial(ctx, listener.Multiaddr(), listeningPeer)
-			if err == nil {
-				atomic.AddUint32(&success, 1)
+			ctx, cancel := context.WithTimeout(context.Background(), 500*time.Millisecond)
+			defer cancel()
+			if _, err := dialer.Dial(ctx, listener.Multiaddr(), listeningPeer); err == nil {
+				success.Add(1)
 			} else {
-				t.Logf("dial error: %v", err)
+				fails.Add(1)
 			}
 		}()
 	}
-
-	for i := 0; uint32(i) < dialerCount; i++ {
-		<-ready
-	}
-	close(start)
 	wg.Wait()
-	successCount := atomic.LoadUint32(&success)
-	require.Equal(t, count, successCount)
+	require.Equal(t, count, int(success.Load()), "expected exactly 3 dial successes")
+	require.Equal(t, 1, int(fails.Load()), "expected exactly 1 dial failure")
 }
 
 // TestWebrtcTransport implements the standard go-libp2p transport test.
