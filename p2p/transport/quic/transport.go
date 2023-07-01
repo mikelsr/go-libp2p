@@ -10,20 +10,20 @@ import (
 	"sync"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/connmgr"
-	ic "github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/core/pnet"
-	tpt "github.com/libp2p/go-libp2p/core/transport"
-	p2ptls "github.com/libp2p/go-libp2p/p2p/security/tls"
-	"github.com/libp2p/go-libp2p/p2p/transport/quicreuse"
+	"github.com/mikelsr/go-libp2p/core/connmgr"
+	ic "github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/pnet"
+	tpt "github.com/mikelsr/go-libp2p/core/transport"
+	p2ptls "github.com/mikelsr/go-libp2p/p2p/security/tls"
+	"github.com/mikelsr/go-libp2p/p2p/transport/quicreuse"
 
 	logging "github.com/ipfs/go-log/v2"
+	"github.com/mikelsr/quic-go"
 	ma "github.com/multiformats/go-multiaddr"
 	mafmt "github.com/multiformats/go-multiaddr-fmt"
 	manet "github.com/multiformats/go-multiaddr/net"
-	"github.com/quic-go/quic-go"
 )
 
 var log = logging.Logger("quic-transport")

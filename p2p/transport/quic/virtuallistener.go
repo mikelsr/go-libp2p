@@ -3,11 +3,11 @@ package libp2pquic
 import (
 	"sync"
 
-	tpt "github.com/libp2p/go-libp2p/core/transport"
-	"github.com/libp2p/go-libp2p/p2p/transport/quicreuse"
+	tpt "github.com/mikelsr/go-libp2p/core/transport"
+	"github.com/mikelsr/go-libp2p/p2p/transport/quicreuse"
 
+	"github.com/mikelsr/quic-go"
 	ma "github.com/multiformats/go-multiaddr"
-	"github.com/quic-go/quic-go"
 )
 
 const acceptBufferPerVersion = 4

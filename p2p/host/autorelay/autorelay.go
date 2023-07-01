@@ -5,11 +5,11 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/libp2p/go-libp2p/core/event"
-	"github.com/libp2p/go-libp2p/core/host"
-	"github.com/libp2p/go-libp2p/core/network"
-	basic "github.com/libp2p/go-libp2p/p2p/host/basic"
-	"github.com/libp2p/go-libp2p/p2p/host/eventbus"
+	"github.com/mikelsr/go-libp2p/core/event"
+	"github.com/mikelsr/go-libp2p/core/host"
+	"github.com/mikelsr/go-libp2p/core/network"
+	basic "github.com/mikelsr/go-libp2p/p2p/host/basic"
+	"github.com/mikelsr/go-libp2p/p2p/host/eventbus"
 
 	logging "github.com/ipfs/go-log/v2"
 	ma "github.com/multiformats/go-multiaddr"

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"testing/quick"
 
-	"github.com/libp2p/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/network"
 	"github.com/stretchr/testify/require"
 )
 

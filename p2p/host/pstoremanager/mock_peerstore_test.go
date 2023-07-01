@@ -10,9 +10,9 @@ import (
 	time "time"
 
 	gomock "github.com/golang/mock/gomock"
-	crypto "github.com/libp2p/go-libp2p/core/crypto"
-	peer "github.com/libp2p/go-libp2p/core/peer"
-	protocol "github.com/libp2p/go-libp2p/core/protocol"
+	crypto "github.com/mikelsr/go-libp2p/core/crypto"
+	peer "github.com/mikelsr/go-libp2p/core/peer"
+	protocol "github.com/mikelsr/go-libp2p/core/protocol"
 	multiaddr "github.com/multiformats/go-multiaddr"
 )
 

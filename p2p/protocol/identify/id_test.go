@@ -8,25 +8,25 @@ import (
 	"testing"
 	"time"
 
-	"github.com/libp2p/go-libp2p"
-	ic "github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/event"
-	"github.com/libp2p/go-libp2p/core/host"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/core/peerstore"
-	"github.com/libp2p/go-libp2p/core/protocol"
-	"github.com/libp2p/go-libp2p/core/record"
-	coretest "github.com/libp2p/go-libp2p/core/test"
-	basichost "github.com/libp2p/go-libp2p/p2p/host/basic"
-	blhost "github.com/libp2p/go-libp2p/p2p/host/blank"
-	"github.com/libp2p/go-libp2p/p2p/host/eventbus"
-	"github.com/libp2p/go-libp2p/p2p/host/peerstore/pstoremem"
-	mocknet "github.com/libp2p/go-libp2p/p2p/net/mock"
-	"github.com/libp2p/go-libp2p/p2p/net/swarm"
-	swarmt "github.com/libp2p/go-libp2p/p2p/net/swarm/testing"
-	"github.com/libp2p/go-libp2p/p2p/protocol/identify"
-	"github.com/libp2p/go-libp2p/p2p/protocol/identify/pb"
+	"github.com/mikelsr/go-libp2p"
+	ic "github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/event"
+	"github.com/mikelsr/go-libp2p/core/host"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/peerstore"
+	"github.com/mikelsr/go-libp2p/core/protocol"
+	"github.com/mikelsr/go-libp2p/core/record"
+	coretest "github.com/mikelsr/go-libp2p/core/test"
+	basichost "github.com/mikelsr/go-libp2p/p2p/host/basic"
+	blhost "github.com/mikelsr/go-libp2p/p2p/host/blank"
+	"github.com/mikelsr/go-libp2p/p2p/host/eventbus"
+	"github.com/mikelsr/go-libp2p/p2p/host/peerstore/pstoremem"
+	mocknet "github.com/mikelsr/go-libp2p/p2p/net/mock"
+	"github.com/mikelsr/go-libp2p/p2p/net/swarm"
+	swarmt "github.com/mikelsr/go-libp2p/p2p/net/swarm/testing"
+	"github.com/mikelsr/go-libp2p/p2p/protocol/identify"
+	"github.com/mikelsr/go-libp2p/p2p/protocol/identify/pb"
 
 	mockClock "github.com/benbjohnson/clock"
 	"github.com/libp2p/go-msgio/pbio"
@@ -42,7 +42,7 @@ func testKnowsAddrs(t *testing.T, h host.Host, p peer.ID, expected []ma.Multiadd
 
 func testHasAgentVersion(t *testing.T, h host.Host, p peer.ID) {
 	v, err := h.Peerstore().Get(p, "AgentVersion")
-	if v.(string) != "github.com/libp2p/go-libp2p" { // this is the default user agent
+	if v.(string) != "github.com/mikelsr/go-libp2p" { // this is the default user agent
 		t.Error("agent version mismatch", err)
 	}
 }

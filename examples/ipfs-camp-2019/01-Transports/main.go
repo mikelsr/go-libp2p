@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/libp2p/go-libp2p"
+	"github.com/mikelsr/go-libp2p"
 )
 
 func main() {

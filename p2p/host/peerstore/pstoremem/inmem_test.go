@@ -3,8 +3,8 @@ package pstoremem
 import (
 	"testing"
 
-	pstore "github.com/libp2p/go-libp2p/core/peerstore"
-	pt "github.com/libp2p/go-libp2p/p2p/host/peerstore/test"
+	pstore "github.com/mikelsr/go-libp2p/core/peerstore"
+	pt "github.com/mikelsr/go-libp2p/p2p/host/peerstore/test"
 
 	mockClock "github.com/benbjohnson/clock"
 	"github.com/stretchr/testify/require"

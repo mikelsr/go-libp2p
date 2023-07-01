@@ -8,9 +8,9 @@ import (
 	"net"
 	"time"
 
-	libp2ptls "github.com/libp2p/go-libp2p/p2p/security/tls"
+	libp2ptls "github.com/mikelsr/go-libp2p/p2p/security/tls"
 
-	"github.com/libp2p/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/peer"
 )
 
 func StartClient() error {

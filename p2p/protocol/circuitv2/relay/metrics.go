@@ -3,8 +3,8 @@ package relay
 import (
 	"time"
 
-	"github.com/libp2p/go-libp2p/p2p/metricshelper"
-	pbv2 "github.com/libp2p/go-libp2p/p2p/protocol/circuitv2/pb"
+	"github.com/mikelsr/go-libp2p/p2p/metricshelper"
+	pbv2 "github.com/mikelsr/go-libp2p/p2p/protocol/circuitv2/pb"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

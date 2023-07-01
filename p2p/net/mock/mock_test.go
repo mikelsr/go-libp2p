@@ -11,15 +11,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/event"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/core/protocol"
+	"github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/event"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/protocol"
 
-	"github.com/libp2p/go-libp2p-testing/ci"
-	tetc "github.com/libp2p/go-libp2p-testing/etc"
-	"github.com/libp2p/go-libp2p-testing/race"
+	"github.com/mikelsr/go-libp2p-testing/ci"
+	tetc "github.com/mikelsr/go-libp2p-testing/etc"
+	"github.com/mikelsr/go-libp2p-testing/race"
 	ma "github.com/multiformats/go-multiaddr"
 	"github.com/stretchr/testify/require"
 )

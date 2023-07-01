@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/libp2p/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/network"
 	ma "github.com/multiformats/go-multiaddr"
 )
 

@@ -1,7 +1,7 @@
 package event
 
 import (
-	"github.com/libp2p/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/network"
 )
 
 // EvtLocalReachabilityChanged is an event struct to be emitted when the local's

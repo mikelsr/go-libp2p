@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/network"
-	. "github.com/libp2p/go-libp2p/p2p/net/swarm/testing"
+	"github.com/mikelsr/go-libp2p/core/network"
+	. "github.com/mikelsr/go-libp2p/p2p/net/swarm/testing"
 
 	"github.com/stretchr/testify/require"
 )

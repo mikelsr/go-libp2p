@@ -8,8 +8,8 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	network "github.com/libp2p/go-libp2p/core/network"
-	protocol "github.com/libp2p/go-libp2p/core/protocol"
+	network "github.com/mikelsr/go-libp2p/core/network"
+	protocol "github.com/mikelsr/go-libp2p/core/protocol"
 )
 
 // MockStreamManagementScope is a mock of StreamManagementScope interface.

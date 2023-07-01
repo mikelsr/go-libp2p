@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	pbv2 "github.com/libp2p/go-libp2p/p2p/protocol/circuitv2/pb"
+	pbv2 "github.com/mikelsr/go-libp2p/p2p/protocol/circuitv2/pb"
 )
 
 func TestNoCoverNoAlloc(t *testing.T) {

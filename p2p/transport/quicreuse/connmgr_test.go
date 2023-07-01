@@ -10,13 +10,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/core/transport"
-	libp2ptls "github.com/libp2p/go-libp2p/p2p/security/tls"
+	"github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/transport"
+	libp2ptls "github.com/mikelsr/go-libp2p/p2p/security/tls"
 
+	"github.com/mikelsr/quic-go"
 	ma "github.com/multiformats/go-multiaddr"
-	"github.com/quic-go/quic-go"
 	"github.com/stretchr/testify/require"
 )
 

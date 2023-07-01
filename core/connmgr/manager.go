@@ -10,8 +10,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
 )
 
 // SupportsDecay evaluates if the provided ConnManager supports decay, and if

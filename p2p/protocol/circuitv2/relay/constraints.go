@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
-	asnutil "github.com/libp2p/go-libp2p-asn-util"
-	"github.com/libp2p/go-libp2p/core/peer"
+	asnutil "github.com/mikelsr/go-libp2p-asn-util"
+	"github.com/mikelsr/go-libp2p/core/peer"
 
 	ma "github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"

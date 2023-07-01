@@ -3,7 +3,7 @@ package holepunch
 import (
 	"testing"
 
-	"github.com/libp2p/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/network"
 	ma "github.com/multiformats/go-multiaddr"
 	"github.com/prometheus/client_golang/prometheus"
 	dto "github.com/prometheus/client_model/go"

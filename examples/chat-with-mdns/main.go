@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/libp2p/go-libp2p"
-	"github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/protocol"
+	"github.com/mikelsr/go-libp2p"
+	"github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/protocol"
 
 	"github.com/multiformats/go-multiaddr"
 )

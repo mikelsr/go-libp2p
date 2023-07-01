@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net"
 
-	"github.com/libp2p/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/network"
 
 	"github.com/quic-go/webtransport-go"
 )

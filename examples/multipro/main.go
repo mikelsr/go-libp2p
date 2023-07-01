@@ -5,9 +5,9 @@ import (
 	"log"
 	"math/rand"
 
-	"github.com/libp2p/go-libp2p"
-	"github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/peerstore"
+	"github.com/mikelsr/go-libp2p"
+	"github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/peerstore"
 
 	ma "github.com/multiformats/go-multiaddr"
 )

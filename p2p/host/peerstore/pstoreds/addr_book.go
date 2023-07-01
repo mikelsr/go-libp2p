@@ -8,11 +8,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/peer"
-	pstore "github.com/libp2p/go-libp2p/core/peerstore"
-	"github.com/libp2p/go-libp2p/core/record"
-	"github.com/libp2p/go-libp2p/p2p/host/peerstore/pstoreds/pb"
-	"github.com/libp2p/go-libp2p/p2p/host/peerstore/pstoremem"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	pstore "github.com/mikelsr/go-libp2p/core/peerstore"
+	"github.com/mikelsr/go-libp2p/core/record"
+	"github.com/mikelsr/go-libp2p/p2p/host/peerstore/pstoreds/pb"
+	"github.com/mikelsr/go-libp2p/p2p/host/peerstore/pstoremem"
 
 	lru "github.com/hashicorp/golang-lru/v2"
 	ds "github.com/ipfs/go-datastore"

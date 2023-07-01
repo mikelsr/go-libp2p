@@ -8,8 +8,8 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	network "github.com/libp2p/go-libp2p/core/network"
-	peer "github.com/libp2p/go-libp2p/core/peer"
+	network "github.com/mikelsr/go-libp2p/core/network"
+	peer "github.com/mikelsr/go-libp2p/core/peer"
 )
 
 // MockPeerScope is a mock of PeerScope interface.

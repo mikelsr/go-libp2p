@@ -17,7 +17,7 @@ import (
 	"testing"
 	"time"
 
-	ic "github.com/libp2p/go-libp2p/core/crypto"
+	ic "github.com/mikelsr/go-libp2p/core/crypto"
 	"github.com/multiformats/go-multihash"
 	"github.com/stretchr/testify/require"
 )

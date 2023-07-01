@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/peer"
-	pstore "github.com/libp2p/go-libp2p/core/peerstore"
-	"github.com/libp2p/go-libp2p/core/record"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	pstore "github.com/mikelsr/go-libp2p/core/peerstore"
+	"github.com/mikelsr/go-libp2p/core/record"
 
 	logging "github.com/ipfs/go-log/v2"
 	ma "github.com/multiformats/go-multiaddr"

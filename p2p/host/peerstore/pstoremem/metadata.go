@@ -3,8 +3,8 @@ package pstoremem
 import (
 	"sync"
 
-	"github.com/libp2p/go-libp2p/core/peer"
-	pstore "github.com/libp2p/go-libp2p/core/peerstore"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	pstore "github.com/mikelsr/go-libp2p/core/peerstore"
 )
 
 type memoryPeerMetadata struct {

@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/host"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/p2p/host/autonat/pb"
+	"github.com/mikelsr/go-libp2p/core/host"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/p2p/host/autonat/pb"
 
 	"github.com/libp2p/go-msgio/pbio"
 )

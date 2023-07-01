@@ -7,7 +7,7 @@
 package obs
 
 import (
-	rcmgr "github.com/libp2p/go-libp2p/p2p/host/resource-manager"
+	rcmgr "github.com/mikelsr/go-libp2p/p2p/host/resource-manager"
 )
 
 var MustRegisterWith = rcmgr.MustRegisterWith

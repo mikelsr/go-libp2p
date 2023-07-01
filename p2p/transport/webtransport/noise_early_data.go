@@ -4,9 +4,9 @@ import (
 	"context"
 	"net"
 
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/p2p/security/noise"
-	"github.com/libp2p/go-libp2p/p2p/security/noise/pb"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/p2p/security/noise"
+	"github.com/mikelsr/go-libp2p/p2p/security/noise/pb"
 )
 
 type earlyDataHandler struct {

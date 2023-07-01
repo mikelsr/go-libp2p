@@ -10,9 +10,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/libp2p/go-libp2p/core/transport"
+	"github.com/mikelsr/go-libp2p/core/transport"
+	"github.com/mikelsr/quic-go"
 	ma "github.com/multiformats/go-multiaddr"
-	"github.com/quic-go/quic-go"
 )
 
 var quicListen = quic.Listen // so we can mock it in tests
@@ -47,13 +47,13 @@ func newConnListener(c pConn, quicConfig *quic.Config, enableDraft29 bool) (*con
 		return nil, err
 	}
 	localMultiaddrs = append(localMultiaddrs, a)
-	if enableDraft29 {
-		a, err := ToQuicMultiaddr(c.LocalAddr(), quic.VersionDraft29)
-		if err != nil {
-			return nil, err
-		}
-		localMultiaddrs = append(localMultiaddrs, a)
-	}
+	// if enableDraft29 {
+	// 	a, err := ToQuicMultiaddr(c.LocalAddr(), quic.VersionDraft29)
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
+	// 	localMultiaddrs = append(localMultiaddrs, a)
+	// }
 	cl := &connListener{
 		protocols: map[string]protoConf{},
 		running:   make(chan struct{}),
@@ -82,7 +82,7 @@ func newConnListener(c pConn, quicConfig *quic.Config, enableDraft29 bool) (*con
 	if err != nil {
 		return nil, err
 	}
-	cl.l = ln
+	cl.l = *ln
 	go cl.Run() // This go routine shuts down once the underlying quic.Listener is closed (or returns an error).
 	return cl, nil
 }
@@ -91,7 +91,7 @@ func (l *connListener) allowWindowIncrease(conn quic.Connection, delta uint64) b
 	l.protocolsMu.Lock()
 	defer l.protocolsMu.Unlock()
 
-	conf, ok := l.protocols[conn.ConnectionState().TLS.ConnectionState.NegotiatedProtocol]
+	conf, ok := l.protocols[conn.ConnectionState().TLS.NegotiatedProtocol]
 	if !ok {
 		return false
 	}

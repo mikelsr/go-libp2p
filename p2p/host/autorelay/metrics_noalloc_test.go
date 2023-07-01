@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/libp2p/go-libp2p/p2p/protocol/circuitv2/client"
-	pbv2 "github.com/libp2p/go-libp2p/p2p/protocol/circuitv2/pb"
+	"github.com/mikelsr/go-libp2p/p2p/protocol/circuitv2/client"
+	pbv2 "github.com/mikelsr/go-libp2p/p2p/protocol/circuitv2/pb"
 )
 
 func getRandScheduledWork() scheduledWorkTimes {

@@ -8,9 +8,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/mikelsr/quic-go"
+	"github.com/mikelsr/quic-go/logging"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/quic-go/quic-go"
-	"github.com/quic-go/quic-go/logging"
 )
 
 var (

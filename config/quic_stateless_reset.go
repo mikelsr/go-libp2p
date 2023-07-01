@@ -6,9 +6,9 @@ import (
 
 	"golang.org/x/crypto/hkdf"
 
-	"github.com/libp2p/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/crypto"
 
-	"github.com/quic-go/quic-go"
+	"github.com/mikelsr/quic-go"
 )
 
 const statelessResetKeyInfo = "libp2p quic stateless reset key"

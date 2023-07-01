@@ -10,13 +10,13 @@ import (
 
 	"golang.org/x/sync/errgroup"
 
-	"github.com/libp2p/go-libp2p/core/event"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	basic "github.com/libp2p/go-libp2p/p2p/host/basic"
-	"github.com/libp2p/go-libp2p/p2p/host/eventbus"
-	circuitv2 "github.com/libp2p/go-libp2p/p2p/protocol/circuitv2/client"
-	circuitv2_proto "github.com/libp2p/go-libp2p/p2p/protocol/circuitv2/proto"
+	"github.com/mikelsr/go-libp2p/core/event"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	basic "github.com/mikelsr/go-libp2p/p2p/host/basic"
+	"github.com/mikelsr/go-libp2p/p2p/host/eventbus"
+	circuitv2 "github.com/mikelsr/go-libp2p/p2p/protocol/circuitv2/client"
+	circuitv2_proto "github.com/mikelsr/go-libp2p/p2p/protocol/circuitv2/proto"
 
 	ma "github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"

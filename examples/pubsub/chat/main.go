@@ -7,11 +7,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/libp2p/go-libp2p"
-	pubsub "github.com/libp2p/go-libp2p-pubsub"
-	"github.com/libp2p/go-libp2p/core/host"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/p2p/discovery/mdns"
+	"github.com/mikelsr/go-libp2p"
+	pubsub "github.com/mikelsr/go-libp2p-pubsub"
+	"github.com/mikelsr/go-libp2p/core/host"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/p2p/discovery/mdns"
 )
 
 // DiscoveryInterval is how often we re-publish our mDNS records.

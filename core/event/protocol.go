@@ -1,8 +1,8 @@
 package event
 
 import (
-	peer "github.com/libp2p/go-libp2p/core/peer"
-	protocol "github.com/libp2p/go-libp2p/core/protocol"
+	peer "github.com/mikelsr/go-libp2p/core/peer"
+	protocol "github.com/mikelsr/go-libp2p/core/protocol"
 )
 
 // EvtPeerProtocolsUpdated should be emitted when a peer we're connected to adds or removes protocols from their stack.

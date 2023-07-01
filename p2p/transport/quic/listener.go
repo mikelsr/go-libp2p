@@ -5,15 +5,15 @@ import (
 	"errors"
 	"net"
 
-	ic "github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	tpt "github.com/libp2p/go-libp2p/core/transport"
-	p2ptls "github.com/libp2p/go-libp2p/p2p/security/tls"
-	"github.com/libp2p/go-libp2p/p2p/transport/quicreuse"
+	ic "github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	tpt "github.com/mikelsr/go-libp2p/core/transport"
+	p2ptls "github.com/mikelsr/go-libp2p/p2p/security/tls"
+	"github.com/mikelsr/go-libp2p/p2p/transport/quicreuse"
 
+	"github.com/mikelsr/quic-go"
 	ma "github.com/multiformats/go-multiaddr"
-	"github.com/quic-go/quic-go"
 )
 
 // A listener listens for QUIC connections.
@@ -29,9 +29,9 @@ type listener struct {
 func newListener(ln quicreuse.Listener, t *transport, localPeer peer.ID, key ic.PrivKey, rcmgr network.ResourceManager) (listener, error) {
 	localMultiaddrs := make(map[quic.VersionNumber]ma.Multiaddr)
 	for _, addr := range ln.Multiaddrs() {
-		if _, err := addr.ValueForProtocol(ma.P_QUIC); err == nil {
-			localMultiaddrs[quic.VersionDraft29] = addr
-		}
+		// if _, err := addr.ValueForProtocol(ma.P_QUIC); err == nil {
+		// 	localMultiaddrs[quic.VersionDraft29] = addr
+		// }
 		if _, err := addr.ValueForProtocol(ma.P_QUIC_V1); err == nil {
 			localMultiaddrs[quic.Version1] = addr
 		}

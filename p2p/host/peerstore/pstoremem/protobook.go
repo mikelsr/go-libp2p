@@ -4,9 +4,9 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/libp2p/go-libp2p/core/peer"
-	pstore "github.com/libp2p/go-libp2p/core/peerstore"
-	"github.com/libp2p/go-libp2p/core/protocol"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	pstore "github.com/mikelsr/go-libp2p/core/peerstore"
+	"github.com/mikelsr/go-libp2p/core/protocol"
 )
 
 type protoSegment struct {

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/transport"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/transport"
 
 	ws "github.com/gorilla/websocket"
 )

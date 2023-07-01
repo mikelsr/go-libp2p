@@ -3,13 +3,13 @@ package libp2pquic
 import (
 	"context"
 
-	ic "github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	tpt "github.com/libp2p/go-libp2p/core/transport"
+	ic "github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	tpt "github.com/mikelsr/go-libp2p/core/transport"
 
+	"github.com/mikelsr/quic-go"
 	ma "github.com/multiformats/go-multiaddr"
-	"github.com/quic-go/quic-go"
 )
 
 type conn struct {

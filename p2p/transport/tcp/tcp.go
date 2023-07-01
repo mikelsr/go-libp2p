@@ -9,10 +9,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/core/transport"
-	"github.com/libp2p/go-libp2p/p2p/net/reuseport"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/transport"
+	"github.com/mikelsr/go-libp2p/p2p/net/reuseport"
 
 	logging "github.com/ipfs/go-log/v2"
 	ma "github.com/multiformats/go-multiaddr"

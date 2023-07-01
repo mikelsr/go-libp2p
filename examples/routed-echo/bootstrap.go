@@ -10,9 +10,9 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/libp2p/go-libp2p/core/host"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/core/peerstore"
+	"github.com/mikelsr/go-libp2p/core/host"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/peerstore"
 
 	ma "github.com/multiformats/go-multiaddr"
 )

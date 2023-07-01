@@ -3,7 +3,7 @@ package client
 import (
 	"net"
 
-	"github.com/libp2p/go-libp2p/core/transport"
+	"github.com/mikelsr/go-libp2p/core/transport"
 	ma "github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"
 )

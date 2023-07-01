@@ -5,8 +5,8 @@ import (
 	"context"
 	"errors"
 
-	ci "github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/peer"
+	ci "github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/peer"
 
 	cid "github.com/ipfs/go-cid"
 )

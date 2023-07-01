@@ -7,12 +7,12 @@ import (
 	"log"
 	"os"
 
-	"github.com/libp2p/go-libp2p/p2p/transport/quicreuse"
+	"github.com/mikelsr/go-libp2p/p2p/transport/quicreuse"
 
-	ic "github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/peer"
-	tpt "github.com/libp2p/go-libp2p/core/transport"
-	libp2pquic "github.com/libp2p/go-libp2p/p2p/transport/quic"
+	ic "github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	tpt "github.com/mikelsr/go-libp2p/core/transport"
+	libp2pquic "github.com/mikelsr/go-libp2p/p2p/transport/quic"
 
 	ma "github.com/multiformats/go-multiaddr"
 )

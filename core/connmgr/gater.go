@@ -3,9 +3,9 @@ package connmgr
 import (
 	ma "github.com/multiformats/go-multiaddr"
 
-	"github.com/libp2p/go-libp2p/core/control"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/control"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
 )
 
 // ConnectionGater can be implemented by a type that supports active

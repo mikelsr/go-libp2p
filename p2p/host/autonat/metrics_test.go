@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/p2p/host/autonat/pb"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/p2p/host/autonat/pb"
 )
 
 func BenchmarkReachabilityStatus(b *testing.B) {

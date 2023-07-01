@@ -4,7 +4,7 @@ import (
 	"crypto/rand"
 	"fmt"
 
-	ic "github.com/libp2p/go-libp2p/core/crypto"
+	ic "github.com/mikelsr/go-libp2p/core/crypto"
 )
 
 func generateKey(keyType string) (priv ic.PrivKey, err error) {

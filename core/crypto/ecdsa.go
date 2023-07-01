@@ -10,8 +10,8 @@ import (
 	"io"
 	"math/big"
 
-	pb "github.com/libp2p/go-libp2p/core/crypto/pb"
-	"github.com/libp2p/go-libp2p/core/internal/catch"
+	pb "github.com/mikelsr/go-libp2p/core/crypto/pb"
+	"github.com/mikelsr/go-libp2p/core/internal/catch"
 
 	"github.com/minio/sha256-simd"
 )

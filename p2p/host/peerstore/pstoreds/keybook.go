@@ -4,9 +4,9 @@ import (
 	"context"
 	"errors"
 
-	ic "github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/peer"
-	pstore "github.com/libp2p/go-libp2p/core/peerstore"
+	ic "github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	pstore "github.com/mikelsr/go-libp2p/core/peerstore"
 
 	ds "github.com/ipfs/go-datastore"
 	"github.com/ipfs/go-datastore/query"

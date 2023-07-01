@@ -11,9 +11,9 @@ import (
 	"strings"
 
 	"github.com/gogo/protobuf/proto"
-	pubsub "github.com/libp2p/go-libp2p-pubsub"
-	"github.com/libp2p/go-libp2p/core/host"
-	peer "github.com/libp2p/go-libp2p/core/peer"
+	pubsub "github.com/mikelsr/go-libp2p-pubsub"
+	"github.com/mikelsr/go-libp2p/core/host"
+	peer "github.com/mikelsr/go-libp2p/core/peer"
 )
 
 func sendMessage(ctx context.Context, topic *pubsub.Topic, msg string) {

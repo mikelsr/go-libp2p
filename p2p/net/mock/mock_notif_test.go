@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
 
 	ma "github.com/multiformats/go-multiaddr"
 	"github.com/stretchr/testify/require"

@@ -7,12 +7,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/host"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/p2p/protocol/holepunch/pb"
-	"github.com/libp2p/go-libp2p/p2p/protocol/identify"
 	"github.com/libp2p/go-msgio/pbio"
+	"github.com/mikelsr/go-libp2p/core/host"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/p2p/protocol/holepunch/pb"
+	"github.com/mikelsr/go-libp2p/p2p/protocol/identify"
 	ma "github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"
 )

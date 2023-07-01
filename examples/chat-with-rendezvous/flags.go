@@ -4,7 +4,7 @@ import (
 	"flag"
 	"strings"
 
-	dht "github.com/libp2p/go-libp2p-kad-dht"
+	dht "github.com/mikelsr/go-libp2p-kad-dht"
 	maddr "github.com/multiformats/go-multiaddr"
 )
 

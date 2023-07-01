@@ -8,14 +8,14 @@ import (
 	"os"
 	"sync"
 
-	"github.com/libp2p/go-libp2p"
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/core/protocol"
-	drouting "github.com/libp2p/go-libp2p/p2p/discovery/routing"
-	dutil "github.com/libp2p/go-libp2p/p2p/discovery/util"
+	"github.com/mikelsr/go-libp2p"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/protocol"
+	drouting "github.com/mikelsr/go-libp2p/p2p/discovery/routing"
+	dutil "github.com/mikelsr/go-libp2p/p2p/discovery/util"
 
-	dht "github.com/libp2p/go-libp2p-kad-dht"
+	dht "github.com/mikelsr/go-libp2p-kad-dht"
 	"github.com/multiformats/go-multiaddr"
 
 	"github.com/ipfs/go-log/v2"

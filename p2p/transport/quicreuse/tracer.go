@@ -9,8 +9,7 @@ import (
 
 	golog "github.com/ipfs/go-log/v2"
 	"github.com/klauspost/compress/zstd"
-	"github.com/quic-go/quic-go/logging"
-	"github.com/quic-go/quic-go/qlog"
+	"github.com/mikelsr/quic-go/logging"
 )
 
 var log = golog.Logger("quic-utils")
@@ -21,20 +20,17 @@ var qlogTracer logging.Tracer
 
 func init() {
 	if qlogDir := os.Getenv("QLOGDIR"); len(qlogDir) > 0 {
-		qlogTracer = initQlogger(qlogDir)
+		// qlogTracer = initQlogger(qlogDir)
 	}
 }
 
-func initQlogger(qlogDir string) logging.Tracer {
-	return qlog.NewTracer(func(role logging.Perspective, connID []byte) io.WriteCloser {
-		// create the QLOGDIR, if it doesn't exist
-		if err := os.MkdirAll(qlogDir, 0777); err != nil {
-			log.Errorf("creating the QLOGDIR failed: %s", err)
-			return nil
-		}
-		return newQlogger(qlogDir, role, connID)
-	})
-}
+// func initQlogger(qlogDir string) logging.Tracer {
+// 	if err := os.MkdirAll(qlogDir, 0777); err != nil {
+// 		log.Errorf("creating the QLOGDIR failed: %s", err)
+// 		return nil
+// 	}
+// 	return qlog.NewConnectionTracer(qlogDir, role, connId)
+// }
 
 // The qlogger logs qlog events to a temporary file: .<name>.qlog.swp.
 // When it is closed, it compresses the temporary file and saves it as <name>.qlog.zst.

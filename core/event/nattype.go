@@ -1,6 +1,6 @@
 package event
 
-import "github.com/libp2p/go-libp2p/core/network"
+import "github.com/mikelsr/go-libp2p/core/network"
 
 // EvtNATDeviceTypeChanged is an event struct to be emitted when the type of the NAT device changes for a Transport Protocol.
 //

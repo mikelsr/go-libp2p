@@ -3,9 +3,9 @@ package proto
 import (
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/core/record"
-	pbv2 "github.com/libp2p/go-libp2p/p2p/protocol/circuitv2/pb"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/record"
+	pbv2 "github.com/mikelsr/go-libp2p/p2p/protocol/circuitv2/pb"
 
 	"google.golang.org/protobuf/proto"
 )

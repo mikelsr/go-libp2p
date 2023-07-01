@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/peer"
-	"github.com/libp2p/go-libp2p/core/peerstore"
-	recordPb "github.com/libp2p/go-libp2p/core/record/pb"
-	blhost "github.com/libp2p/go-libp2p/p2p/host/blank"
-	swarmt "github.com/libp2p/go-libp2p/p2p/net/swarm/testing"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	"github.com/mikelsr/go-libp2p/core/peerstore"
+	recordPb "github.com/mikelsr/go-libp2p/core/record/pb"
+	blhost "github.com/mikelsr/go-libp2p/p2p/host/blank"
+	swarmt "github.com/mikelsr/go-libp2p/p2p/net/swarm/testing"
 	"google.golang.org/protobuf/proto"
 
 	"github.com/stretchr/testify/assert"

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/libp2p/go-libp2p/core/network"
-	"github.com/libp2p/go-libp2p/core/transport"
+	"github.com/mikelsr/go-libp2p/core/network"
+	"github.com/mikelsr/go-libp2p/core/transport"
 
 	logging "github.com/ipfs/go-log/v2"
 	tec "github.com/jbenet/go-temp-err-catcher"

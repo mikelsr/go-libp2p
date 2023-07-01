@@ -8,9 +8,9 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	control "github.com/libp2p/go-libp2p/core/control"
-	network "github.com/libp2p/go-libp2p/core/network"
-	peer "github.com/libp2p/go-libp2p/core/peer"
+	control "github.com/mikelsr/go-libp2p/core/control"
+	network "github.com/mikelsr/go-libp2p/core/network"
+	peer "github.com/mikelsr/go-libp2p/core/peer"
 	multiaddr "github.com/multiformats/go-multiaddr"
 )
 

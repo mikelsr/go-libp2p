@@ -13,17 +13,17 @@ import (
 	"testing"
 	"time"
 
-	ic "github.com/libp2p/go-libp2p/core/crypto"
-	"github.com/libp2p/go-libp2p/core/network"
-	mocknetwork "github.com/libp2p/go-libp2p/core/network/mocks"
-	"github.com/libp2p/go-libp2p/core/peer"
-	tpt "github.com/libp2p/go-libp2p/core/transport"
-	"github.com/libp2p/go-libp2p/p2p/transport/quicreuse"
+	ic "github.com/mikelsr/go-libp2p/core/crypto"
+	"github.com/mikelsr/go-libp2p/core/network"
+	mocknetwork "github.com/mikelsr/go-libp2p/core/network/mocks"
+	"github.com/mikelsr/go-libp2p/core/peer"
+	tpt "github.com/mikelsr/go-libp2p/core/transport"
+	"github.com/mikelsr/go-libp2p/p2p/transport/quicreuse"
 
 	"github.com/golang/mock/gomock"
+	"github.com/mikelsr/quic-go"
+	quicproxy "github.com/mikelsr/quic-go/integrationtests/tools/proxy"
 	ma "github.com/multiformats/go-multiaddr"
-	"github.com/quic-go/quic-go"
-	quicproxy "github.com/quic-go/quic-go/integrationtests/tools/proxy"
 	"github.com/stretchr/testify/require"
 )
 
@@ -749,9 +749,9 @@ func TestClientCanDialDifferentQUICVersions(t *testing.T) {
 					var err error
 					if v == quic.Version1 {
 						conn, err = ln1.Accept()
-					} else if v == quic.VersionDraft29 {
+					} else /* if v == quic.VersionDraft29 {
 						conn, err = ln2.Accept()
-					} else {
+					} else */{
 						panic("unexpected version")
 					}
 					require.NoError(t, err)
