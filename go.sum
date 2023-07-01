@@ -296,8 +296,8 @@ github.com/miekg/dns v1.1.41/go.mod h1:p6aan82bvRIyn+zDIv9xYNUpwa73JcSh9BKwknJys
 github.com/miekg/dns v1.1.43/go.mod h1:+evo5L0630/F6ca/Z9+GAqzhjGyn8/c+TBaOyfEl0V4=
 github.com/miekg/dns v1.1.54 h1:5jon9mWcb0sFJGpnI99tOMhCPyJ+RPVz5b63MQG0VWI=
 github.com/miekg/dns v1.1.54/go.mod h1:uInx36IzPl7FYnDcMeVWxj9byh7DutNykX4G9Sj60FY=
-github.com/mikelsr/go-libp2p-testing v0.12.1-0.20230701144900-4a2e31d819f6 h1:wXFi4vlcHfNcIaoPQu3teYvXBAoqYrIwhwZ7tUTNrNw=
-github.com/mikelsr/go-libp2p-testing v0.12.1-0.20230701144900-4a2e31d819f6/go.mod h1:ymbxJ5AjLcgGAUjYPYmDsemBFGMIy9WlNuOgIz1R0x8=
+github.com/mikelsr/go-libp2p-testing v0.12.1-0.20230701164002-d7b68d0821b4 h1:bS17nMRPFH7nz8hspXJhyM6/QXRhIJwhhLFidYzm8IA=
+github.com/mikelsr/go-libp2p-testing v0.12.1-0.20230701164002-d7b68d0821b4/go.mod h1:WZ2KprI6mPewmI/WZG4Y1xBWT78yQpiJV2CmF2l3d88=
 github.com/mikelsr/quic-go v0.36.1-0.20230701132136-1d9415b66898 h1:QnkmzIvZTiL+3w7pFkexnyGDh0X6J+MdCldVcIpYGtk=
 github.com/mikelsr/quic-go v0.36.1-0.20230701132136-1d9415b66898/go.mod h1:ITpKLBLfVXFK8HDyT85wlRhKDMHTzG0huh90uzPuIaY=
 github.com/mikelsr/webtransport-go v0.0.0-20230701162752-682cdbbd920e h1:89OkKoDQ9of9ETWE6ohjV68Oeive51CzL+nMxtPz1yI=
@@ -339,8 +339,8 @@ github.com/multiformats/go-multibase v0.2.0/go.mod h1:bFBZX4lKCA/2lyOFSAoKH5SS6o
 github.com/multiformats/go-multicodec v0.9.0 h1:pb/dlPnzee/Sxv/j4PmkDRxCOi3hXTz3IbPKOXWJkmg=
 github.com/multiformats/go-multicodec v0.9.0/go.mod h1:L3QTQvMIaVBkXOXXtVmYE+LI16i14xuaojr/H7Ai54k=
 github.com/multiformats/go-multihash v0.0.8/go.mod h1:YSLudS+Pi8NHE7o6tb3D8vrpKa63epEDmG8nTduyAew=
-github.com/multiformats/go-multihash v0.2.2 h1:Uu7LWs/PmWby1gkj1S1DXx3zyd3aVabA4FiMKn/2tAc=
-github.com/multiformats/go-multihash v0.2.2/go.mod h1:dXgKXCXjBzdscBLk9JkjINiEsCKRVch90MdaGiKsvSM=
+github.com/multiformats/go-multihash v0.2.3 h1:7Lyc8XfX/IY2jWb/gI7JP+o7JEq9hOa7BFvVU9RSh+U=
+github.com/multiformats/go-multihash v0.2.3/go.mod h1:dXgKXCXjBzdscBLk9JkjINiEsCKRVch90MdaGiKsvSM=
 github.com/multiformats/go-multistream v0.4.1 h1:rFy0Iiyn3YT0asivDUIR05leAdwZq3de4741sbiSdfo=
 github.com/multiformats/go-multistream v0.4.1/go.mod h1:Mz5eykRVAjJWckE2U78c6xqdtyNUEhKSM0Lwar2p77Q=
 github.com/multiformats/go-varint v0.0.1/go.mod h1:3Ls8CIEsrijN6+B7PbrXRPxHRPuXSrVKRY101jdMZYE=
@@ -782,8 +782,8 @@ google.golang.org/protobuf v1.24.0/go.mod h1:r/3tXBNzIEhYS9I1OUVjXDlt8tc493IdKGj
 google.golang.org/protobuf v1.25.0/go.mod h1:9JNX74DMeImyA3h4bdi1ymwjUzf21/xIlbajtzgsN7c=
 google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp09yW+WbY/TyQbw=
 google.golang.org/protobuf v1.26.0/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
-google.golang.org/protobuf v1.30.0 h1:kPPoIgf3TsEvrm0PFe15JQ+570QVxYzEvvHqChK+cng=
-google.golang.org/protobuf v1.30.0/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
+google.golang.org/protobuf v1.31.0 h1:g0LDEJHgrBl9N9r17Ru3sqWhkIx2NB67okBHPwC7hs8=
+google.golang.org/protobuf v1.31.0/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
 gopkg.in/alecthomas/kingpin.v2 v2.2.6/go.mod h1:FMv+mEhP44yOT+4EoQTLFTRgOQ1FBLkstjWtayDeSgw=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=

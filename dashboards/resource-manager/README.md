@@ -13,7 +13,7 @@ option libp2p.PrometheusRegisterer. For example:
 ``` go
 import (
     // ...
-	rcmgr "github.com/libp2p/go-libp2p/p2p/host/resource-manager"
+	rcmgr "github.com/mikelsr/go-libp2p/p2p/host/resource-manager"
 
 	"github.com/prometheus/client_golang/prometheus"
 )

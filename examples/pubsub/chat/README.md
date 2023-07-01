@@ -13,7 +13,7 @@ the details of configuration.
 Clone this repo, then `cd` into the `examples/pubsub/chat` directory:
 
 ```shell
-git clone https://github.com/libp2p/go-libp2p
+git clone https://github.com/mikelsr/go-libp2p
 cd go-libp2p/examples/pubsub/chat
 ```
 

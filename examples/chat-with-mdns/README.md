@@ -30,7 +30,7 @@ ctx := context.Background()
 // Other options can be added here.
 host, err := libp2p.New()
 ```
-[libp2p.New](https://godoc.org/github.com/libp2p/go-libp2p#New) is the constructor for libp2p node. It creates a host with given configuration.
+[libp2p.New](https://godoc.org/github.com/mikelsr/go-libp2p#New) is the constructor for libp2p node. It creates a host with given configuration.
 
 2. **Set a default handler function for incoming connections.**
 
@@ -57,12 +57,12 @@ func handleStream(stream net.Stream) {
 
 3. **Find peers nearby using mdns**
 
-Start [mdns discovery](https://godoc.org/github.com/libp2p/go-libp2p/p2p/discovery#NewMdnsService) service in host.
+Start [mdns discovery](https://godoc.org/github.com/mikelsr/go-libp2p/p2p/discovery#NewMdnsService) service in host.
 
 ```go
 ser, err := discovery.NewMdnsService(peerhost, rendezvous)
 ```
-register [Notifee interface](https://godoc.org/github.com/libp2p/go-libp2p/p2p/discovery#Notifee) with service so that we get notified about peer discovery
+register [Notifee interface](https://godoc.org/github.com/mikelsr/go-libp2p/p2p/discovery#Notifee) with service so that we get notified about peer discovery
 
 ```go
 	n := &discoveryNotifee{}

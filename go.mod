@@ -31,7 +31,7 @@ require (
 	github.com/libp2p/go-yamux/v4 v4.0.0
 	github.com/libp2p/zeroconf/v2 v2.2.0
 	github.com/marten-seemann/tcp v0.0.0-20210406111302-dfbc87cc63fd
-	github.com/mikelsr/go-libp2p-testing v0.12.1-0.20230701144900-4a2e31d819f6
+	github.com/mikelsr/go-libp2p-testing v0.12.1-0.20230701164002-d7b68d0821b4
 	github.com/mikelsr/quic-go v0.36.1-0.20230701132136-1d9415b66898
 	github.com/mikelsr/webtransport-go v0.0.0-20230701162752-682cdbbd920e
 	github.com/mikioh/tcpinfo v0.0.0-20190314235526-30a79bb1804b
@@ -43,7 +43,7 @@ require (
 	github.com/multiformats/go-multiaddr-fmt v0.1.0
 	github.com/multiformats/go-multibase v0.2.0
 	github.com/multiformats/go-multicodec v0.9.0
-	github.com/multiformats/go-multihash v0.2.2
+	github.com/multiformats/go-multihash v0.2.3
 	github.com/multiformats/go-multistream v0.4.1
 	github.com/multiformats/go-varint v0.0.7
 	github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58
@@ -58,7 +58,7 @@ require (
 	golang.org/x/sync v0.3.0
 	golang.org/x/sys v0.9.0
 	golang.org/x/tools v0.10.0
-	google.golang.org/protobuf v1.30.0
+	google.golang.org/protobuf v1.31.0
 )
 
 require (

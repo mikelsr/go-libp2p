@@ -39,14 +39,14 @@ As in other examples, the new node will send the message `"Hello, world!"` to th
 
 ## Details
 
-The `makeRoutedHost()` function creates a [go-libp2p routedhost](https://godoc.org/github.com/libp2p/go-libp2p/p2p/host/routed) object. `routedhost` objects wrap [go-libp2p basichost](https://godoc.org/github.com/libp2p/go-libp2p/p2p/host/basic) and add the ability to lookup a peers address using the ipfs distributed hash table as implemented by [go-libp2p-kad-dht](https://godoc.org/github.com/libp2p/go-libp2p-kad-dht).
+The `makeRoutedHost()` function creates a [go-libp2p routedhost](https://godoc.org/github.com/mikelsr/go-libp2p/p2p/host/routed) object. `routedhost` objects wrap [go-libp2p basichost](https://godoc.org/github.com/mikelsr/go-libp2p/p2p/host/basic) and add the ability to lookup a peers address using the ipfs distributed hash table as implemented by [go-libp2p-kad-dht](https://godoc.org/github.com/libp2p/go-libp2p-kad-dht).
 
 In order to create the routed host, the example needs:
 
-- A [go-libp2p basichost](https://godoc.org/github.com/libp2p/go-libp2p/p2p/host/basic) as in other examples.
+- A [go-libp2p basichost](https://godoc.org/github.com/mikelsr/go-libp2p/p2p/host/basic) as in other examples.
 - A [go-libp2p-kad-dht](https://godoc.org/github.com/libp2p/go-libp2p-kad-dht) which provides the ability to lookup peers by ID.  Wrapping takes place via `routedHost := rhost.Wrap(basicHost, dht)`
 
-A `routedhost` can now open streams (bi-directional channel between to peers) using [NewStream](https://godoc.org/github.com/libp2p/go-libp2p/p2p/host/basic#BasicHost.NewStream) and use them to send and receive data tagged with a `Protocol.ID` (a string). The host can also listen for incoming connections for a given
-`Protocol` with [`SetStreamHandle()`](https://godoc.org/github.com/libp2p/go-libp2p/p2p/host/basic#BasicHost.SetStreamHandler).  The advantage of the routed host is that only the Peer ID is required to make the connection, not the underlying address details, since they are provided by the DHT.
+A `routedhost` can now open streams (bi-directional channel between to peers) using [NewStream](https://godoc.org/github.com/mikelsr/go-libp2p/p2p/host/basic#BasicHost.NewStream) and use them to send and receive data tagged with a `Protocol.ID` (a string). The host can also listen for incoming connections for a given
+`Protocol` with [`SetStreamHandle()`](https://godoc.org/github.com/mikelsr/go-libp2p/p2p/host/basic#BasicHost.SetStreamHandler).  The advantage of the routed host is that only the Peer ID is required to make the connection, not the underlying address details, since they are provided by the DHT.
 
 The example makes use of all of this to enable communication between a listener and a sender using protocol `/echo/1.0.0` (which could be any other thing).

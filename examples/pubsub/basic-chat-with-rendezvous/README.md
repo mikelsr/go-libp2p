@@ -9,7 +9,7 @@ Peers are discovered using a DHT, so no prior information (other than the rendez
 Clone this repo, then `cd` into the `examples/pubsub/basic-chat-with-rendezvous` directory:
 
 ```shell
-git clone https://github.com/libp2p/go-libp2p
+git clone https://github.com/mikelsr/go-libp2p
 cd go-libp2p/examples/pubsub/basic-chat-with-rendezvous
 ```
 
