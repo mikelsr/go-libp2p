@@ -1,10 +1,10 @@
-module github.com/mikelsr/go-libp2p/test-plans/m/v2
+module github.com/libp2p/go-libp2p/test-plans/m/v2
 
 go 1.19
 
 require (
 	github.com/go-redis/redis/v8 v8.11.5
-	github.com/mikelsr/go-libp2p v0.0.0
+	github.com/libp2p/go-libp2p v0.0.0
 	github.com/multiformats/go-multiaddr v0.9.0
 )
 
@@ -40,7 +40,7 @@ require (
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
 	github.com/libp2p/go-cidranger v1.1.0 // indirect
 	github.com/libp2p/go-flow-metrics v0.1.0 // indirect
-	github.com/mikelsr/go-libp2p-asn-util v0.3.0 // indirect
+	github.com/libp2p/go-libp2p-asn-util v0.3.0 // indirect
 	github.com/libp2p/go-mplex v0.7.0 // indirect
 	github.com/libp2p/go-msgio v0.3.0 // indirect
 	github.com/libp2p/go-nat v0.2.0 // indirect
@@ -96,4 +96,4 @@ require (
 	lukechampine.com/blake3 v1.2.1 // indirect
 )
 
-replace github.com/mikelsr/go-libp2p => ../
+replace github.com/libp2p/go-libp2p => ../

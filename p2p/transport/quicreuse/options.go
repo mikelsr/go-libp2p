@@ -11,7 +11,7 @@ func DisableReuseport() Option {
 
 // DisableDraft29 disables support for QUIC draft-29.
 // This option should be set, unless support for this legacy QUIC version is needed for backwards compatibility.
-// Support for QUIC draft-29 is already deprecated and will be removed in the future, see https://github.com/mikelsr/go-libp2p/issues/1841.
+// Support for QUIC draft-29 is already deprecated and will be removed in the future, see https://github.com/libp2p/go-libp2p/issues/1841.
 func DisableDraft29() Option {
 	return func(m *ConnManager) error {
 		m.enableDraft29 = false

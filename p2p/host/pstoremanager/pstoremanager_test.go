@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-//go:generate sh -c "go run github.com/golang/mock/mockgen -package pstoremanager_test -destination mock_peerstore_test.go github.com/mikelsr/go-libp2p/core/peerstore Peerstore"
+//go:generate sh -c "go run github.com/golang/mock/mockgen -package pstoremanager_test -destination mock_peerstore_test.go github.com/libp2p/go-libp2p/core/peerstore Peerstore"
 
 func TestGracePeriod(t *testing.T) {
 	t.Parallel()
