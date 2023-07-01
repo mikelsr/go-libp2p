@@ -8,9 +8,9 @@ import (
 	"os"
 	"sync"
 
+	dht "github.com/libp2p/go-libp2p-kad-dht"
+	pubsub "github.com/libp2p/go-libp2p-pubsub"
 	"github.com/mikelsr/go-libp2p"
-	dht "github.com/mikelsr/go-libp2p-kad-dht"
-	pubsub "github.com/mikelsr/go-libp2p-pubsub"
 	"github.com/mikelsr/go-libp2p/core/host"
 	"github.com/mikelsr/go-libp2p/core/peer"
 	drouting "github.com/mikelsr/go-libp2p/p2p/discovery/routing"

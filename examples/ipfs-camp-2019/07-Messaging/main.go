@@ -15,8 +15,8 @@ import (
 	"github.com/mikelsr/go-libp2p/p2p/transport/tcp"
 	"github.com/mikelsr/go-libp2p/p2p/transport/websocket"
 
-	kaddht "github.com/mikelsr/go-libp2p-kad-dht"
-	pubsub "github.com/mikelsr/go-libp2p-pubsub"
+	kaddht "github.com/libp2p/go-libp2p-kad-dht"
+	pubsub "github.com/libp2p/go-libp2p-pubsub"
 	"github.com/mikelsr/go-libp2p/core/host"
 	"github.com/mikelsr/go-libp2p/core/peer"
 	"github.com/mikelsr/go-libp2p/core/routing"

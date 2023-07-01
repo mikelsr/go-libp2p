@@ -10,7 +10,7 @@ import (
 	"github.com/mikelsr/go-libp2p/core/protocol"
 	"github.com/mikelsr/go-libp2p/p2p/net/swarm"
 
-	"github.com/mikelsr/go-libp2p-testing/race"
+	"github.com/libp2p/go-libp2p-testing/race"
 
 	"github.com/golang/mock/gomock"
 	ma "github.com/multiformats/go-multiaddr"

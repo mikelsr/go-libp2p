@@ -15,7 +15,7 @@ import (
 	drouting "github.com/mikelsr/go-libp2p/p2p/discovery/routing"
 	dutil "github.com/mikelsr/go-libp2p/p2p/discovery/util"
 
-	dht "github.com/mikelsr/go-libp2p-kad-dht"
+	dht "github.com/libp2p/go-libp2p-kad-dht"
 	"github.com/multiformats/go-multiaddr"
 
 	"github.com/ipfs/go-log/v2"

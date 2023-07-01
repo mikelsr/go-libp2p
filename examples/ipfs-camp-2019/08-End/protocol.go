@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/gogo/protobuf/proto"
-	pubsub "github.com/mikelsr/go-libp2p-pubsub"
+	pubsub "github.com/libp2p/go-libp2p-pubsub"
 	"github.com/mikelsr/go-libp2p/core/host"
 	peer "github.com/mikelsr/go-libp2p/core/peer"
 )

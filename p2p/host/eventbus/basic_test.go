@@ -11,7 +11,7 @@ import (
 
 	"github.com/mikelsr/go-libp2p/core/event"
 
-	"github.com/mikelsr/go-libp2p-testing/race"
+	"github.com/libp2p/go-libp2p-testing/race"
 
 	"github.com/stretchr/testify/require"
 )

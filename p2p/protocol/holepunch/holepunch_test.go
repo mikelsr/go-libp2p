@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/libp2p/go-libp2p-testing/race"
 	"github.com/mikelsr/go-libp2p"
-	"github.com/mikelsr/go-libp2p-testing/race"
 	"github.com/mikelsr/go-libp2p/core/host"
 	"github.com/mikelsr/go-libp2p/core/network"
 	"github.com/mikelsr/go-libp2p/core/peer"

@@ -19,7 +19,7 @@ import (
 
 	logging "github.com/ipfs/go-log/v2"
 	pool "github.com/libp2p/go-buffer-pool"
-	asnutil "github.com/mikelsr/go-libp2p-asn-util"
+	asnutil "github.com/libp2p/go-libp2p-asn-util"
 	ma "github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"
 )
