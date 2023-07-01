@@ -9,7 +9,7 @@ import (
 	"github.com/decred/dcrd/dcrec/secp256k1/v4"
 )
 
-// KeyPairFromStdKey wraps standard library (and secp256k1) private keys in libp2p/go-libp2p/core/crypto keys
+// KeyPairFromStdKey wraps standard library (and secp256k1) private keys in mikelsr/go-libp2p/core/crypto keys
 func KeyPairFromStdKey(priv crypto.PrivateKey) (PrivKey, PubKey, error) {
 	if priv == nil {
 		return nil, nil, ErrNilPrivateKey
@@ -37,7 +37,7 @@ func KeyPairFromStdKey(priv crypto.PrivateKey) (PrivKey, PubKey, error) {
 	}
 }
 
-// PrivKeyToStdKey converts libp2p/go-libp2p/core/crypto private keys to standard library (and secp256k1) private keys
+// PrivKeyToStdKey converts mikelsr/go-libp2p/core/crypto private keys to standard library (and secp256k1) private keys
 func PrivKeyToStdKey(priv PrivKey) (crypto.PrivateKey, error) {
 	if priv == nil {
 		return nil, ErrNilPrivateKey
@@ -57,7 +57,7 @@ func PrivKeyToStdKey(priv PrivKey) (crypto.PrivateKey, error) {
 	}
 }
 
-// PubKeyToStdKey converts libp2p/go-libp2p/core/crypto private keys to standard library (and secp256k1) public keys
+// PubKeyToStdKey converts mikelsr/go-libp2p/core/crypto private keys to standard library (and secp256k1) public keys
 func PubKeyToStdKey(pub PubKey) (crypto.PublicKey, error) {
 	if pub == nil {
 		return nil, ErrNilPublicKey

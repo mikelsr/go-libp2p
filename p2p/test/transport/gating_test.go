@@ -17,7 +17,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-//go:generate go run github.com/golang/mock/mockgen -package transport_integration -destination mock_connection_gater_test.go github.com/libp2p/go-libp2p/core/connmgr ConnectionGater
+//go:generate go run github.com/golang/mock/mockgen -package transport_integration -destination mock_connection_gater_test.go github.com/mikelsr/go-libp2p/core/connmgr ConnectionGater
 
 func stripCertHash(addr ma.Multiaddr) ma.Multiaddr {
 	for {

@@ -1,11 +1,11 @@
-module github.com/libp2p/go-libp2p/examples/pubsub/chat
+module github.com/mikelsr/go-libp2p/examples/pubsub/chat
 
 go 1.19
 
 require (
 	github.com/gdamore/tcell/v2 v2.5.2
-	github.com/libp2p/go-libp2p v0.28.0
-	github.com/libp2p/go-libp2p-pubsub v0.9.0
+	github.com/mikelsr/go-libp2p v0.28.0
+	github.com/mikelsr/go-libp2p-pubsub v0.9.0
 	github.com/rivo/tview v0.0.0-20220307222120-9994674d60a8
 )
 
@@ -44,7 +44,7 @@ require (
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
 	github.com/libp2p/go-cidranger v1.1.0 // indirect
 	github.com/libp2p/go-flow-metrics v0.1.0 // indirect
-	github.com/libp2p/go-libp2p-asn-util v0.3.0 // indirect
+	github.com/mikelsr/go-libp2p-asn-util v0.3.0 // indirect
 	github.com/libp2p/go-msgio v0.3.0 // indirect
 	github.com/libp2p/go-nat v0.2.0 // indirect
 	github.com/libp2p/go-netroute v0.2.1 // indirect
