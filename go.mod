@@ -32,7 +32,8 @@ require (
 	github.com/libp2p/zeroconf/v2 v2.2.0
 	github.com/marten-seemann/tcp v0.0.0-20210406111302-dfbc87cc63fd
 	github.com/mikelsr/go-libp2p-testing v0.12.1-0.20230701144900-4a2e31d819f6
-	github.com/mikelsr/quic-go v0.36.1-0.20230701123228-a37e25d9f70e
+	github.com/mikelsr/quic-go v0.36.1-0.20230701132136-1d9415b66898
+	github.com/mikelsr/webtransport-go v0.0.0-20230701162752-682cdbbd920e
 	github.com/mikioh/tcpinfo v0.0.0-20190314235526-30a79bb1804b
 	github.com/minio/sha256-simd v1.0.1
 	github.com/mr-tron/base58 v1.2.0
@@ -48,7 +49,6 @@ require (
 	github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58
 	github.com/prometheus/client_golang v1.14.0
 	github.com/prometheus/client_model v0.4.0
-	github.com/quic-go/webtransport-go v0.5.3
 	github.com/raulk/go-watchdog v1.3.0
 	github.com/stretchr/testify v1.8.2
 	go.uber.org/fx v1.19.2
@@ -101,10 +101,7 @@ require (
 	github.com/prometheus/common v0.37.0 // indirect
 	github.com/prometheus/procfs v0.8.0 // indirect
 	github.com/quic-go/qpack v0.4.0 // indirect
-	github.com/quic-go/qtls-go1-18 v0.2.0 // indirect
-	github.com/quic-go/qtls-go1-19 v0.2.0 // indirect
 	github.com/quic-go/qtls-go1-20 v0.3.0 // indirect
-	github.com/quic-go/quic-go v0.32.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	go.uber.org/atomic v1.11.0 // indirect

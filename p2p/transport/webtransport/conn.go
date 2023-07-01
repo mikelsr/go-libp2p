@@ -6,8 +6,8 @@ import (
 	"github.com/mikelsr/go-libp2p/core/network"
 	tpt "github.com/mikelsr/go-libp2p/core/transport"
 
+	"github.com/mikelsr/webtransport-go"
 	ma "github.com/multiformats/go-multiaddr"
-	"github.com/quic-go/webtransport-go"
 )
 
 type connSecurityMultiaddrs struct {

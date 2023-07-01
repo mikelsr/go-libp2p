@@ -89,7 +89,7 @@ require (
 	github.com/quic-go/qtls-go1-19 v0.3.2 // indirect
 	github.com/quic-go/qtls-go1-20 v0.2.2 // indirect
 	github.com/mikelsr/quic-go v0.36.1-0.20230701123228-a37e25d9f70e // indirect
-	github.com/quic-go/webtransport-go v0.5.3 // indirect
+	github.com/mikelsr/webtransport-go v0.5.3 // indirect
 	github.com/raulk/go-watchdog v1.3.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/whyrusleeping/go-keyspace v0.0.0-20160322163242-5b898ac5add1 // indirect

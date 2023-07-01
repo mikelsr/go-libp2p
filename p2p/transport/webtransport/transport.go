@@ -26,10 +26,10 @@ import (
 	logging "github.com/ipfs/go-log/v2"
 	"github.com/mikelsr/quic-go"
 	"github.com/mikelsr/quic-go/http3"
+	"github.com/mikelsr/webtransport-go"
 	ma "github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"
 	"github.com/multiformats/go-multihash"
-	"github.com/quic-go/webtransport-go"
 )
 
 var log = logging.Logger("webtransport")

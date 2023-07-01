@@ -6,7 +6,7 @@ import (
 
 	"github.com/mikelsr/go-libp2p/core/network"
 
-	"github.com/quic-go/webtransport-go"
+	"github.com/mikelsr/webtransport-go"
 )
 
 const (

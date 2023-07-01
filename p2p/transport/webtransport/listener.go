@@ -14,8 +14,8 @@ import (
 	"github.com/mikelsr/go-libp2p/p2p/security/noise/pb"
 	"github.com/mikelsr/go-libp2p/p2p/transport/quicreuse"
 
+	"github.com/mikelsr/webtransport-go"
 	ma "github.com/multiformats/go-multiaddr"
-	"github.com/quic-go/webtransport-go"
 )
 
 const queueLen = 16
